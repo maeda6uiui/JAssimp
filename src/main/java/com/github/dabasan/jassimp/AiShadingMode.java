@@ -40,129 +40,125 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
- * Defines all shading modes supported by the library.<p>
+ * Defines all shading modes supported by the library.
+ * <p>
  *
- * The list of shading modes has been taken from Blender.
- * See Blender documentation for more information. The API does
- * not distinguish between "specular" and "diffuse" shaders (thus the
- * specular term for diffuse shading models like Oren-Nayar remains
- * undefined).<p>
+ * The list of shading modes has been taken from Blender. See Blender
+ * documentation for more information. The API does not distinguish between
+ * "specular" and "diffuse" shaders (thus the specular term for diffuse shading
+ * models like Oren-Nayar remains undefined).
+ * <p>
  * Again, this value is just a hint. Assimp tries to select the shader whose
- * most common implementation matches the original rendering results of the
- * 3D modeller which wrote a particular model as closely as possible.
+ * most common implementation matches the original rendering results of the 3D
+ * modeller which wrote a particular model as closely as possible.
  */
 public enum AiShadingMode {
-    /** 
-     * Flat shading.<p>
-     * 
-     * Shading is done on per-face base, diffuse only. Also known as 
-     * 'faceted shading'.
-     */
-    FLAT(0x1),
+	/**
+	 * Flat shading.
+	 * <p>
+	 * 
+	 * Shading is done on per-face base, diffuse only. Also known as 'faceted
+	 * shading'.
+	 */
+	FLAT(0x1),
 
+	/**
+	 * Simple Gouraud shading.
+	 */
+	GOURAUD(0x2),
 
-    /** 
-     * Simple Gouraud shading. 
-     */
-    GOURAUD(0x2),
+	/**
+	 * Phong-Shading.
+	 */
+	PHONG(0x3),
 
+	/**
+	 * Phong-Blinn-Shading.
+	 */
+	BLINN(0x4),
 
-    /** 
-     * Phong-Shading.
-     */
-    PHONG(0x3),
+	/**
+	 * Toon-Shading per pixel.
+	 * <p>
+	 *
+	 * Also known as 'comic' shader.
+	 */
+	TOON(0x5),
 
+	/**
+	 * OrenNayar-Shading per pixel.
+	 * <p>
+	 *
+	 * Extension to standard Lambertian shading, taking the roughness of the
+	 * material into account
+	 */
+	OREN_NAYAR(0x6),
 
-    /** 
-     * Phong-Blinn-Shading.
-     */
-    BLINN(0x4),
+	/**
+	 * Minnaert-Shading per pixel.
+	 * <p>
+	 *
+	 * Extension to standard Lambertian shading, taking the "darkness" of the
+	 * material into account
+	 */
+	MINNAERT(0x7),
 
+	/**
+	 * CookTorrance-Shading per pixel.
+	 * <p>
+	 *
+	 * Special shader for metallic surfaces.
+	 */
+	COOK_TORRANCE(0x8),
 
-    /** 
-     * Toon-Shading per pixel.<p>
-     *
-     * Also known as 'comic' shader.
-     */
-    TOON(0x5),
+	/**
+	 * No shading at all.
+	 * <p>
+	 * 
+	 * Constant light influence of 1.0.
+	 */
+	NO_SHADING(0x9),
 
+	/**
+	 * Fresnel shading.
+	 */
+	FRESNEL(0xa);
 
-    /** 
-     * OrenNayar-Shading per pixel.<p>
-     *
-     * Extension to standard Lambertian shading, taking the roughness of the 
-     * material into account
-     */
-    OREN_NAYAR(0x6),
+	/**
+	 * Utility method for converting from c/c++ based integer enums to java
+	 * enums.
+	 * <p>
+	 * 
+	 * This method is intended to be used from JNI and my change based on
+	 * implementation needs.
+	 * 
+	 * @param rawValue
+	 *            an integer based enum value (as defined by assimp)
+	 * @return the enum value corresponding to rawValue
+	 */
+	static AiShadingMode fromRawValue(int rawValue) {
+		for (final AiShadingMode type : AiShadingMode.values()) {
+			if (type.m_rawValue == rawValue) {
+				return type;
+			}
+		}
 
+		throw new IllegalArgumentException("unexptected raw value: " + rawValue);
+	}
 
-    /** 
-     * Minnaert-Shading per pixel.<p>
-     *
-     * Extension to standard Lambertian shading, taking the "darkness" of the 
-     * material into account
-     */
-    MINNAERT(0x7),
+	/**
+	 * Constructor.
+	 * 
+	 * @param rawValue
+	 *            maps java enum to c/c++ integer enum values
+	 */
+	private AiShadingMode(int rawValue) {
+		m_rawValue = rawValue;
+	}
 
-
-    /** 
-     * CookTorrance-Shading per pixel.<p>
-     *
-     * Special shader for metallic surfaces.
-     */
-    COOK_TORRANCE(0x8),
-
-
-    /** 
-     * No shading at all.<p>
-     * 
-     * Constant light influence of 1.0.
-     */
-    NO_SHADING(0x9),
-
-
-    /** 
-     * Fresnel shading.
-     */
-    FRESNEL(0xa);
-
-
-    /**
-     * Utility method for converting from c/c++ based integer enums to java 
-     * enums.<p>
-     * 
-     * This method is intended to be used from JNI and my change based on
-     * implementation needs.
-     * 
-     * @param rawValue an integer based enum value (as defined by assimp) 
-     * @return the enum value corresponding to rawValue
-     */
-    static AiShadingMode fromRawValue(int rawValue) {
-        for (AiShadingMode type : AiShadingMode.values()) {
-            if (type.m_rawValue == rawValue) {
-                return type;
-            }
-        }
-
-        throw new IllegalArgumentException("unexptected raw value: " + 
-                rawValue);
-    }
-
-
-    /**
-     * Constructor.
-     * 
-     * @param rawValue maps java enum to c/c++ integer enum values
-     */
-    private AiShadingMode(int rawValue) {
-        m_rawValue = rawValue;
-    }
-
-
-    /**
-     * The mapped c/c++ integer enum value.
-     */
-    private final int m_rawValue;
+	/**
+	 * The mapped c/c++ integer enum value.
+	 */
+	private final int m_rawValue;
 }

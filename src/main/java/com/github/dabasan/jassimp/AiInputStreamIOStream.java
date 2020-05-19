@@ -48,80 +48,72 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.ByteBuffer;
 
-
 /**
  * Implementation of AiIOStream reading from a InputStream
  * 
  * @author Jesper Smith
  *
  */
-public class AiInputStreamIOStream implements AiIOStream
-{
-   private final ByteArrayOutputStream os = new ByteArrayOutputStream(); 
-   
-   
-   public AiInputStreamIOStream(URI uri) throws IOException {
-      this(uri.toURL());
-   }
-   
-   public AiInputStreamIOStream(URL url) throws IOException {
-      this(url.openStream());
-   }
-   
-   public AiInputStreamIOStream(InputStream is) throws IOException {
-      int read;
-      byte[] data = new byte[1024];
-      while((read = is.read(data, 0, data.length)) != -1) {
-         os.write(data, 0, read);
-      }
-      os.flush();
-      
-      is.close();
-   }
-   
-   @Override
-   public int getFileSize() {
-      return os.size();
-   }
-   
-   @Override
-   public boolean read(ByteBuffer buffer) {
-     ByteBufferOutputStream bos = new ByteBufferOutputStream(buffer);
-     try
-     {
-        os.writeTo(bos);
-     }
-     catch (IOException e)
-     {
-        e.printStackTrace();
-        return false;
-     }
-     return true;
-   }
-   
-   /**
-    * Internal helper class to copy the contents of an OutputStream
-    * into a ByteBuffer. This avoids a copy.
-    *
-    */
-   private static class ByteBufferOutputStream extends OutputStream {
+public class AiInputStreamIOStream implements AiIOStream {
+	private final ByteArrayOutputStream os = new ByteArrayOutputStream();
 
-      private final ByteBuffer buffer;
-      
-      public ByteBufferOutputStream(ByteBuffer buffer) {
-         this.buffer = buffer;
-      }
-      
-      @Override
-      public void write(int b) throws IOException
-      {
-         buffer.put((byte) b);
-      }
-    
-      @Override
-      public void write(byte b[], int off, int len) throws IOException {
-         buffer.put(b, off, len);
-      }
-   }
+	public AiInputStreamIOStream(URI uri) throws IOException {
+		this(uri.toURL());
+	}
+
+	public AiInputStreamIOStream(URL url) throws IOException {
+		this(url.openStream());
+	}
+
+	public AiInputStreamIOStream(InputStream is) throws IOException {
+		int read;
+		final byte[] data = new byte[1024];
+		while ((read = is.read(data, 0, data.length)) != -1) {
+			os.write(data, 0, read);
+		}
+		os.flush();
+
+		is.close();
+	}
+
+	@Override
+	public int getFileSize() {
+		return os.size();
+	}
+
+	@Override
+	public boolean read(ByteBuffer buffer) {
+		final ByteBufferOutputStream bos = new ByteBufferOutputStream(buffer);
+		try {
+			os.writeTo(bos);
+		} catch (final IOException e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Internal helper class to copy the contents of an OutputStream into a
+	 * ByteBuffer. This avoids a copy.
+	 *
+	 */
+	private static class ByteBufferOutputStream extends OutputStream {
+
+		private final ByteBuffer buffer;
+
+		public ByteBufferOutputStream(ByteBuffer buffer) {
+			this.buffer = buffer;
+		}
+
+		@Override
+		public void write(int b) throws IOException {
+			buffer.put((byte) b);
+		}
+
+		@Override
+		public void write(byte b[], int off, int len) throws IOException {
+			buffer.put(b, off, len);
+		}
+	}
 }
-

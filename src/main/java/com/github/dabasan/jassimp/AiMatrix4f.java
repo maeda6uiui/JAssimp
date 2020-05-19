@@ -48,86 +48,84 @@ import java.nio.FloatBuffer;
  * Simple 4x4 matrix of floats.
  */
 public final class AiMatrix4f {
-    /**
-     * Wraps the given array of floats as matrix.
-     * <p>
-     * 
-     * The array must have exactly 16 entries. The data in the array must be in
-     * row-major order.
-     * 
-     * @param data
-     *            the array to wrap, may not be null
-     */
-    public AiMatrix4f(float[] data) {
-        if (data == null) {
-            throw new IllegalArgumentException("data may not be null");
-        }
-        if (data.length != 16) {
-            throw new IllegalArgumentException("array length is not 16");
-        }
+	/**
+	 * Wraps the given array of floats as matrix.
+	 * <p>
+	 * 
+	 * The array must have exactly 16 entries. The data in the array must be in
+	 * row-major order.
+	 * 
+	 * @param data
+	 *            the array to wrap, may not be null
+	 */
+	public AiMatrix4f(float[] data) {
+		if (data == null) {
+			throw new IllegalArgumentException("data may not be null");
+		}
+		if (data.length != 16) {
+			throw new IllegalArgumentException("array length is not 16");
+		}
 
-        m_data = data;
-    }
+		m_data = data;
+	}
 
-    /**
-     * Gets an element of the matrix.
-     * 
-     * @param row
-     *            the row
-     * @param col
-     *            the column
-     * @return the element at the given position
-     */
-    public float get(int row, int col) {
-        if (row < 0 || row > 3) {
-            throw new IndexOutOfBoundsException("Index: " + row + ", Size: 4");
-        }
-        if (col < 0 || col > 3) {
-            throw new IndexOutOfBoundsException("Index: " + col + ", Size: 4");
-        }
+	/**
+	 * Gets an element of the matrix.
+	 * 
+	 * @param row
+	 *            the row
+	 * @param col
+	 *            the column
+	 * @return the element at the given position
+	 */
+	public float get(int row, int col) {
+		if (row < 0 || row > 3) {
+			throw new IndexOutOfBoundsException("Index: " + row + ", Size: 4");
+		}
+		if (col < 0 || col > 3) {
+			throw new IndexOutOfBoundsException("Index: " + col + ", Size: 4");
+		}
 
-        return m_data[row * 4 + col];
-    }
+		return m_data[row * 4 + col];
+	}
 
-    /**
-     * Stores the matrix in a new direct ByteBuffer with native byte order.
-     * <p>
-     * 
-     * The returned buffer can be passed to rendering APIs such as LWJGL, e.g.,
-     * as parameter for <code>GL20.glUniformMatrix4()</code>. Be sure to set
-     * <code>transpose</code> to <code>true</code> in this case, as OpenGL
-     * expects the matrix in column order.
-     * 
-     * @return a new native order, direct ByteBuffer
-     */
-    public FloatBuffer toByteBuffer() {
-        ByteBuffer bbuf = ByteBuffer.allocateDirect(16 * 4);
-        bbuf.order(ByteOrder.nativeOrder());
-        FloatBuffer fbuf = bbuf.asFloatBuffer();
-        fbuf.put(m_data);
-        fbuf.flip();
+	/**
+	 * Stores the matrix in a new direct ByteBuffer with native byte order.
+	 * <p>
+	 * 
+	 * The returned buffer can be passed to rendering APIs such as LWJGL, e.g.,
+	 * as parameter for <code>GL20.glUniformMatrix4()</code>. Be sure to set
+	 * <code>transpose</code> to <code>true</code> in this case, as OpenGL
+	 * expects the matrix in column order.
+	 * 
+	 * @return a new native order, direct ByteBuffer
+	 */
+	public FloatBuffer toByteBuffer() {
+		final ByteBuffer bbuf = ByteBuffer.allocateDirect(16 * 4);
+		bbuf.order(ByteOrder.nativeOrder());
+		final FloatBuffer fbuf = bbuf.asFloatBuffer();
+		fbuf.put(m_data);
+		fbuf.flip();
 
-        return fbuf;
-    }
+		return fbuf;
+	}
 
-    
-    @Override
-    public String toString() {
-        StringBuilder buf = new StringBuilder();
+	@Override
+	public String toString() {
+		final StringBuilder buf = new StringBuilder();
 
-        for (int row = 0; row < 4; row++) {
-            for (int col = 0; col < 4; col++) {
-                buf.append(m_data[row * 4 + col]).append(" ");
-            }
-            buf.append("\n");
-        }
+		for (int row = 0; row < 4; row++) {
+			for (int col = 0; col < 4; col++) {
+				buf.append(m_data[row * 4 + col]).append(" ");
+			}
+			buf.append("\n");
+		}
 
-        return buf.toString();
-    }
+		return buf.toString();
+	}
 
-
-    /**
-     * Data buffer.
-     */
-    private final float[] m_data;
+	/**
+	 * Data buffer.
+	 */
+	private final float[] m_data;
 }

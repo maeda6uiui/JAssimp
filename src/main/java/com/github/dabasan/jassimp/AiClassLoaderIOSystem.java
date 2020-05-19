@@ -45,109 +45,99 @@ import java.io.InputStream;
 import java.net.URL;
 
 /**
- * IOSystem based on the Java classloader.<p>
+ * IOSystem based on the Java classloader.
+ * <p>
  * 
- * This IOSystem allows loading models directly from the 
- * classpath. No extraction to the file system is 
- * necessary.
+ * This IOSystem allows loading models directly from the classpath. No
+ * extraction to the file system is necessary.
  * 
  * @author Jesper Smith
  *
  */
-public class AiClassLoaderIOSystem implements AiIOSystem<AiInputStreamIOStream>
-{
-   private final Class<?> clazz;
-   private final ClassLoader classLoader;
-  
-   /**
-    * Construct a new AiClassLoaderIOSystem.<p>
-    * 
-    * This constructor uses a ClassLoader to resolve
-    * resources.
-    * 
-    * @param classLoader classLoader to resolve resources.
-    */
-   public AiClassLoaderIOSystem(ClassLoader classLoader) {
-      this.clazz = null;
-      this.classLoader = classLoader;
-   }
+public class AiClassLoaderIOSystem implements AiIOSystem<AiInputStreamIOStream> {
+	private final Class<?> clazz;
+	private final ClassLoader classLoader;
 
-   /**
-    * Construct a new AiClassLoaderIOSystem.<p>
-    * 
-    * This constructor uses a Class to resolve
-    * resources.
-    * 
-    * @param class<?> class to resolve resources.
-    */
-   public AiClassLoaderIOSystem(Class<?> clazz) {
-      this.clazz = clazz;
-      this.classLoader = null;
-   }
-   
+	/**
+	 * Construct a new AiClassLoaderIOSystem.
+	 * <p>
+	 * 
+	 * This constructor uses a ClassLoader to resolve resources.
+	 * 
+	 * @param classLoader
+	 *            classLoader to resolve resources.
+	 */
+	public AiClassLoaderIOSystem(ClassLoader classLoader) {
+		this.clazz = null;
+		this.classLoader = classLoader;
+	}
 
-   @Override
-   public AiInputStreamIOStream open(String filename, String ioMode) {
-      try {
-         
-         InputStream is;
-         
-         if(clazz != null) {
-            is = clazz.getResourceAsStream(filename);
-         }
-         else if (classLoader != null) {
-            is = classLoader.getResourceAsStream(filename);
-         }
-         else {
-            System.err.println("[" + getClass().getSimpleName() + 
-                "] No class or classLoader provided to resolve " + filename);
-            return null;
-         }
-         
-         if(is != null) {
-            return new AiInputStreamIOStream(is);
-         }
-         else {
-            System.err.println("[" + getClass().getSimpleName() + 
-                               "] Cannot find " + filename);
-            return null;
-         }
-      }
-      catch (IOException e) {
-         e.printStackTrace();
-         return null;
-      }
-   }
+	/**
+	 * Construct a new AiClassLoaderIOSystem.
+	 * <p>
+	 * 
+	 * This constructor uses a Class to resolve resources.
+	 * 
+	 * @param class<?>
+	 *            class to resolve resources.
+	 */
+	public AiClassLoaderIOSystem(Class<?> clazz) {
+		this.clazz = clazz;
+		this.classLoader = null;
+	}
 
-   @Override
-   public void close(AiInputStreamIOStream file) {
-   }
+	@Override
+	public AiInputStreamIOStream open(String filename, String ioMode) {
+		try {
 
-   @Override
-   public boolean exists(String path)
-   {
-      URL url = null;
-      if(clazz != null) {
-         url = clazz.getResource(path);
-      }
-      else if (classLoader != null) {
-         url = classLoader.getResource(path);
-      }
+			InputStream is;
 
-      
-      if(url == null)
-      {
-         return false;
-      }
+			if (clazz != null) {
+				is = clazz.getResourceAsStream(filename);
+			} else if (classLoader != null) {
+				is = classLoader.getResourceAsStream(filename);
+			} else {
+				System.err.println("[" + getClass().getSimpleName()
+						+ "] No class or classLoader provided to resolve " + filename);
+				return null;
+			}
 
-	  return true;
-      
-   }
+			if (is != null) {
+				return new AiInputStreamIOStream(is);
+			} else {
+				System.err.println("[" + getClass().getSimpleName() + "] Cannot find " + filename);
+				return null;
+			}
+		} catch (final IOException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
-   @Override
-   public char getOsSeparator()
-   {
-      return '/';
-   }
+	@Override
+	public void close(AiInputStreamIOStream file) {
+	}
+
+	@Override
+	public boolean exists(String path) {
+		URL url = null;
+		if (clazz != null) {
+			url = clazz.getResource(path);
+		} else if (classLoader != null) {
+			url = classLoader.getResource(path);
+		}
+
+		if (url == null) {
+			return false;
+		}
+
+		return true;
+
+	}
+
+	@Override
+	public char getOsSeparator() {
+		return '/';
+	}
 
 }

@@ -168,7 +168,7 @@ public enum AiTextureType {
 	 * @return the enum value corresponding to rawValue
 	 */
 	static AiTextureType fromRawValue(int rawValue) {
-		AiTextureType[] types = AiTextureType.values();
+		final AiTextureType[] types = AiTextureType.values();
 		if (0 <= rawValue && rawValue < types.length) {
 			return types[rawValue];
 		} else {

@@ -42,43 +42,37 @@ package com.github.dabasan.jassimp;
 
 import java.nio.ByteBuffer;
 
-
 /**
  * Wrapper provider using jassimp built in types.
  */
-public final class AiBuiltInWrapperProvider implements AiWrapperProvider<
-        AiVector, AiMatrix4f, AiColor, AiNode, AiQuaternion> {
+public final class AiBuiltInWrapperProvider
+		implements
+			AiWrapperProvider<AiVector, AiMatrix4f, AiColor, AiNode, AiQuaternion> {
 
-    @Override
-    public AiVector wrapVector3f(ByteBuffer buffer, int offset, 
-            int numComponents) {
-        
-        return new AiVector(buffer, offset, numComponents);
-    }
+	@Override
+	public AiVector wrapVector3f(ByteBuffer buffer, int offset, int numComponents) {
 
+		return new AiVector(buffer, offset, numComponents);
+	}
 
-    @Override
-    public AiMatrix4f wrapMatrix4f(float[] data) {
-        return new AiMatrix4f(data);
-    }
+	@Override
+	public AiMatrix4f wrapMatrix4f(float[] data) {
+		return new AiMatrix4f(data);
+	}
 
-    
-    @Override
-    public AiColor wrapColor(ByteBuffer buffer, int offset) {
-        return new AiColor(buffer, offset);
-    }
+	@Override
+	public AiColor wrapColor(ByteBuffer buffer, int offset) {
+		return new AiColor(buffer, offset);
+	}
 
+	@Override
+	public AiNode wrapSceneNode(Object parent, Object matrix, int[] meshReferences, String name) {
 
-    @Override
-    public AiNode wrapSceneNode(Object parent, Object matrix,
-            int[] meshReferences, String name) {
-        
-        return new AiNode((AiNode) parent, matrix, meshReferences, name);
-    }
+		return new AiNode((AiNode) parent, matrix, meshReferences, name);
+	}
 
-
-    @Override
-    public AiQuaternion wrapQuaternion(ByteBuffer buffer, int offset) {
-        return new AiQuaternion(buffer, offset);
-    }
+	@Override
+	public AiQuaternion wrapQuaternion(ByteBuffer buffer, int offset) {
+		return new AiQuaternion(buffer, offset);
+	}
 }

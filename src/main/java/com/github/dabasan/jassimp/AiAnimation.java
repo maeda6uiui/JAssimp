@@ -43,133 +43,137 @@ package com.github.dabasan.jassimp;
 import java.util.ArrayList;
 import java.util.List;
 
-/** 
- * An animation.<p>
+/**
+ * An animation.
+ * <p>
  * 
- * An animation consists of keyframe data for a number of nodes. For 
- * each node affected by the animation a separate series of data is given.<p>
+ * An animation consists of keyframe data for a number of nodes. For each node
+ * affected by the animation a separate series of data is given.
+ * <p>
  * 
- * Like {@link AiMesh}, the animation related classes offer a Buffer API, a 
- * Direct API and a wrapped API. Please consult the documentation of 
+ * Like {@link AiMesh}, the animation related classes offer a Buffer API, a
+ * Direct API and a wrapped API. Please consult the documentation of
  * {@link AiMesh} for a description and comparison of these APIs.
  */
 public final class AiAnimation {
-    /**
-     * Name.
-     */
-    private final String m_name;
-    
-    /**
-     * Duration.
-     */
-    private final double m_duration;
-    
-    /**
-     * Ticks per second.
-     */
-    private final double m_ticksPerSecond;
-        
-    /**
-     * Bone animation channels.
-     */
-    private final List<AiNodeAnim> m_nodeAnims = new ArrayList<AiNodeAnim>();
+	/**
+	 * Name.
+	 */
+	private final String m_name;
 
-    /**
-     * Constructor.
-     * 
-     * @param name name
-     * @param duration duration
-     * @param ticksPerSecond ticks per second
-     */
-    AiAnimation(String name, double duration, double ticksPerSecond) {
-        m_name = name;
-        m_duration = duration;
-        m_ticksPerSecond = ticksPerSecond;
-    }
-    
-    
-    /** 
-     * Returns the name of the animation.<p>
-     * 
-     * If the modeling package this data was exported from does support only 
-     * a single animation channel, this name is usually empty (length is zero).
-     * 
-     * @return the name
-     */
-    public String getName() {
-        return m_name;
-    }
-    
+	/**
+	 * Duration.
+	 */
+	private final double m_duration;
 
-    /** 
-     * Returns the duration of the animation in ticks.
-     * 
-     * @return the duration
-     */
-    public double getDuration() {
-        return m_duration;
-    }
+	/**
+	 * Ticks per second.
+	 */
+	private final double m_ticksPerSecond;
 
-    
-    /** 
-     * Returns the ticks per second.<p>
-     * 
-     * 0 if not specified in the imported file
-     * 
-     * @return the number of ticks per second
-     */
-    public double getTicksPerSecond() {
-        return m_ticksPerSecond;
-    }
-    
+	/**
+	 * Bone animation channels.
+	 */
+	private final List<AiNodeAnim> m_nodeAnims = new ArrayList<>();
 
-    /** 
-     * Returns the number of bone animation channels.<p>
-     * 
-     * Each channel affects a single node. This method will return the same
-     * value as <code>getChannels().size()</code>
-     * 
-     * @return the number of bone animation channels
-     */
-    public int getNumChannels() {
-        return m_nodeAnims.size();
-    }
-    
+	/**
+	 * Constructor.
+	 * 
+	 * @param name
+	 *            name
+	 * @param duration
+	 *            duration
+	 * @param ticksPerSecond
+	 *            ticks per second
+	 */
+	AiAnimation(String name, double duration, double ticksPerSecond) {
+		m_name = name;
+		m_duration = duration;
+		m_ticksPerSecond = ticksPerSecond;
+	}
 
-    /** 
-     * Returns the list of bone animation channels.<p>
-     * 
-     * Each channel affects a single node. The array is mNumChannels in size.
-     * 
-     * @return the list of bone animation channels
-     */
-    public List<AiNodeAnim> getChannels() {
-        return m_nodeAnims;
-    }
+	/**
+	 * Returns the name of the animation.
+	 * <p>
+	 * 
+	 * If the modeling package this data was exported from does support only a
+	 * single animation channel, this name is usually empty (length is zero).
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return m_name;
+	}
 
+	/**
+	 * Returns the duration of the animation in ticks.
+	 * 
+	 * @return the duration
+	 */
+	public double getDuration() {
+		return m_duration;
+	}
 
-    /** 
-     * Returns the number of mesh animation channels.<p>
-     * 
-     * Each channel affects a single mesh and defines vertex-based animation.
-     * This method will return the same value as 
-     * <code>getMeshChannels().size()</code>
-     * 
-     * @return the number of mesh animation channels
-     */
-    public int getNumMeshChannels() {
-        throw new UnsupportedOperationException("not implemented yet");
-    }
+	/**
+	 * Returns the ticks per second.
+	 * <p>
+	 * 
+	 * 0 if not specified in the imported file
+	 * 
+	 * @return the number of ticks per second
+	 */
+	public double getTicksPerSecond() {
+		return m_ticksPerSecond;
+	}
 
-    
-    /** 
-     * Returns the list of mesh animation channels.<p>
-     * 
-     * Each channel affects a single mesh.
-     * 
-     * @return the list of mesh animation channels
-     */
-    public List<AiMeshAnim> getMeshChannels() {
-        throw new UnsupportedOperationException("not implemented yet");
-    }    
+	/**
+	 * Returns the number of bone animation channels.
+	 * <p>
+	 * 
+	 * Each channel affects a single node. This method will return the same
+	 * value as <code>getChannels().size()</code>
+	 * 
+	 * @return the number of bone animation channels
+	 */
+	public int getNumChannels() {
+		return m_nodeAnims.size();
+	}
+
+	/**
+	 * Returns the list of bone animation channels.
+	 * <p>
+	 * 
+	 * Each channel affects a single node. The array is mNumChannels in size.
+	 * 
+	 * @return the list of bone animation channels
+	 */
+	public List<AiNodeAnim> getChannels() {
+		return m_nodeAnims;
+	}
+
+	/**
+	 * Returns the number of mesh animation channels.
+	 * <p>
+	 * 
+	 * Each channel affects a single mesh and defines vertex-based animation.
+	 * This method will return the same value as
+	 * <code>getMeshChannels().size()</code>
+	 * 
+	 * @return the number of mesh animation channels
+	 */
+	public int getNumMeshChannels() {
+		throw new UnsupportedOperationException("not implemented yet");
+	}
+
+	/**
+	 * Returns the list of mesh animation channels.
+	 * <p>
+	 * 
+	 * Each channel affects a single mesh.
+	 * 
+	 * @return the list of mesh animation channels
+	 */
+	public List<AiMeshAnim> getMeshChannels() {
+		throw new UnsupportedOperationException("not implemented yet");
+	}
 }

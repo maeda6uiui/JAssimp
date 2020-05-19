@@ -42,168 +42,163 @@ package com.github.dabasan.jassimp;
 
 import java.nio.ByteBuffer;
 
-
 /**
  * Debug/utility methods.
  */
 public final class JaiDebug {
 
-    /**
-     * Pure static class, no accessible constructor.
-     */
-    private JaiDebug() {
-        /* nothing to do */
-    }
-    
-    
-    /**
-     * Dumps vertex positions of a mesh to stdout.<p>
-     * 
-     * @param mesh the mesh
-     */
-    public static void dumpPositions(AiMesh mesh) {
-        if (!mesh.hasPositions()) {
-            System.out.println("mesh has no vertex positions");
-            return;
-        }
-        
-        for (int i = 0; i < mesh.getNumVertices(); i++) {
-            System.out.println("[" +
-                    mesh.getPositionX(i) + ", " + 
-                    mesh.getPositionY(i) + ", " + 
-                    mesh.getPositionZ(i) + "]"
-                    );
-        }
-    }
-    
-    
-    /**
-     * Dumps faces of a mesh to stdout.<p>
-     * 
-     * @param mesh the mesh
-     */
-    public static void dumpFaces(AiMesh mesh) {
-        if (!mesh.hasFaces()) {
-            System.out.println("mesh has no faces");
-            return;
-        }
-        
-        for (int face = 0; face < mesh.getNumFaces(); face++) {
-            int faceNumIndices = mesh.getFaceNumIndices(face);
-            System.out.print(faceNumIndices + ": ");
-            
-            for (int vertex = 0; vertex < faceNumIndices; vertex++) {
-                int reference = mesh.getFaceVertex(face, vertex);
-                
-                System.out.print("[" + 
-                        mesh.getPositionX(reference) + ", " + 
-                        mesh.getPositionY(reference) + ", " + 
-                        mesh.getPositionZ(reference) + "] "
-                        );
-            }
-            
-            System.out.println();
-        }
-    }
-    
-    
-    /**
-     * Dumps a vertex color set of a mesh to stdout.<p>
-     * 
-     * @param mesh the mesh
-     * @param colorset the color set
-     */
-    public static void dumpColorset(AiMesh mesh, int colorset) {
-        if (!mesh.hasColors(colorset)) {
-            System.out.println("mesh has no vertex color set " + colorset);
-            return;
-        }
-        
-        for (int i = 0; i < mesh.getNumVertices(); i++) {
-            System.out.println("[" + 
-                    mesh.getColorR(i, colorset) + ", " + 
-                    mesh.getColorG(i, colorset) + ", " + 
-                    mesh.getColorB(i, colorset) + ", " + 
-                    mesh.getColorA(i, colorset) + "]"
-                    );
-        }
-    }
-    
-    
-    /**
-     * Dumps a texture coordinate set of a mesh to stdout.
-     * 
-     * @param mesh the mesh
-     * @param coords the coordinates
-     */
-    public static void dumpTexCoords(AiMesh mesh, int coords) {
-        if (!mesh.hasTexCoords(coords)) {
-            System.out.println("mesh has no texture coordinate set " + coords);
-            return;
-        }
-        
-        for (int i = 0; i < mesh.getNumVertices(); i++) {
-            int numComponents = mesh.getNumUVComponents(coords);
-            System.out.print("[" + mesh.getTexCoordU(i, coords));
-            
-            if (numComponents > 1) {
-                System.out.print(", " + mesh.getTexCoordV(i, coords));
-            }
-            
-            if (numComponents > 2) {
-                System.out.print(", " + mesh.getTexCoordW(i, coords));
-            }
-            
-            System.out.println("]");
-        }
-    }
-    
-    
-    /**
-     * Dumps a single material property to stdout.
-     * 
-     * @param property the property
-     */
-    public static void dumpMaterialProperty(AiMaterial.Property property) {
-        System.out.print(property.getKey() + " " + property.getSemantic() + 
-                " " + property.getIndex() + ": ");
-        Object data = property.getData();
-        
-        if (data instanceof ByteBuffer) {
-            ByteBuffer buf = (ByteBuffer) data;
-            for (int i = 0; i < buf.capacity(); i++) {
-                System.out.print(Integer.toHexString(buf.get(i) & 0xFF) + " ");
-            }
-            
-            System.out.println();
-        }
-        else {
-            System.out.println(data.toString());
-        }
-    }
-    
-    
-    /**
-     * Dumps all properties of a material to stdout.
-     * 
-     * @param material the material
-     */
-    public static void dumpMaterial(AiMaterial material) {
-        for (AiMaterial.Property prop : material.getProperties()) {
-            dumpMaterialProperty(prop);
-        }
-    }
-    
-    
-    /**
-     * Dumps an animation channel to stdout.
-     * 
-     * @param nodeAnim the channel 
-     */
-    public static void dumpNodeAnim(AiNodeAnim nodeAnim) {
-        for (int i = 0; i < nodeAnim.getNumPosKeys(); i++) {
-            System.out.println(i + ": " + nodeAnim.getPosKeyTime(i) + 
-                    " ticks, " + nodeAnim.getPosKeyVector(i, Jassimp.BUILTIN));
-        }
-    }
+	/**
+	 * Pure static class, no accessible constructor.
+	 */
+	private JaiDebug() {
+		/* nothing to do */
+	}
+
+	/**
+	 * Dumps vertex positions of a mesh to stdout.
+	 * <p>
+	 * 
+	 * @param mesh
+	 *            the mesh
+	 */
+	public static void dumpPositions(AiMesh mesh) {
+		if (!mesh.hasPositions()) {
+			System.out.println("mesh has no vertex positions");
+			return;
+		}
+
+		for (int i = 0; i < mesh.getNumVertices(); i++) {
+			System.out.println("[" + mesh.getPositionX(i) + ", " + mesh.getPositionY(i) + ", "
+					+ mesh.getPositionZ(i) + "]");
+		}
+	}
+
+	/**
+	 * Dumps faces of a mesh to stdout.
+	 * <p>
+	 * 
+	 * @param mesh
+	 *            the mesh
+	 */
+	public static void dumpFaces(AiMesh mesh) {
+		if (!mesh.hasFaces()) {
+			System.out.println("mesh has no faces");
+			return;
+		}
+
+		for (int face = 0; face < mesh.getNumFaces(); face++) {
+			final int faceNumIndices = mesh.getFaceNumIndices(face);
+			System.out.print(faceNumIndices + ": ");
+
+			for (int vertex = 0; vertex < faceNumIndices; vertex++) {
+				final int reference = mesh.getFaceVertex(face, vertex);
+
+				System.out.print(
+						"[" + mesh.getPositionX(reference) + ", " + mesh.getPositionY(reference)
+								+ ", " + mesh.getPositionZ(reference) + "] ");
+			}
+
+			System.out.println();
+		}
+	}
+
+	/**
+	 * Dumps a vertex color set of a mesh to stdout.
+	 * <p>
+	 * 
+	 * @param mesh
+	 *            the mesh
+	 * @param colorset
+	 *            the color set
+	 */
+	public static void dumpColorset(AiMesh mesh, int colorset) {
+		if (!mesh.hasColors(colorset)) {
+			System.out.println("mesh has no vertex color set " + colorset);
+			return;
+		}
+
+		for (int i = 0; i < mesh.getNumVertices(); i++) {
+			System.out.println("[" + mesh.getColorR(i, colorset) + ", "
+					+ mesh.getColorG(i, colorset) + ", " + mesh.getColorB(i, colorset) + ", "
+					+ mesh.getColorA(i, colorset) + "]");
+		}
+	}
+
+	/**
+	 * Dumps a texture coordinate set of a mesh to stdout.
+	 * 
+	 * @param mesh
+	 *            the mesh
+	 * @param coords
+	 *            the coordinates
+	 */
+	public static void dumpTexCoords(AiMesh mesh, int coords) {
+		if (!mesh.hasTexCoords(coords)) {
+			System.out.println("mesh has no texture coordinate set " + coords);
+			return;
+		}
+
+		for (int i = 0; i < mesh.getNumVertices(); i++) {
+			final int numComponents = mesh.getNumUVComponents(coords);
+			System.out.print("[" + mesh.getTexCoordU(i, coords));
+
+			if (numComponents > 1) {
+				System.out.print(", " + mesh.getTexCoordV(i, coords));
+			}
+
+			if (numComponents > 2) {
+				System.out.print(", " + mesh.getTexCoordW(i, coords));
+			}
+
+			System.out.println("]");
+		}
+	}
+
+	/**
+	 * Dumps a single material property to stdout.
+	 * 
+	 * @param property
+	 *            the property
+	 */
+	public static void dumpMaterialProperty(AiMaterial.Property property) {
+		System.out.print(property.getKey() + " " + property.getSemantic() + " "
+				+ property.getIndex() + ": ");
+		final Object data = property.getData();
+
+		if (data instanceof ByteBuffer) {
+			final ByteBuffer buf = (ByteBuffer) data;
+			for (int i = 0; i < buf.capacity(); i++) {
+				System.out.print(Integer.toHexString(buf.get(i) & 0xFF) + " ");
+			}
+
+			System.out.println();
+		} else {
+			System.out.println(data.toString());
+		}
+	}
+
+	/**
+	 * Dumps all properties of a material to stdout.
+	 * 
+	 * @param material
+	 *            the material
+	 */
+	public static void dumpMaterial(AiMaterial material) {
+		for (final AiMaterial.Property prop : material.getProperties()) {
+			dumpMaterialProperty(prop);
+		}
+	}
+
+	/**
+	 * Dumps an animation channel to stdout.
+	 * 
+	 * @param nodeAnim
+	 *            the channel
+	 */
+	public static void dumpNodeAnim(AiNodeAnim nodeAnim) {
+		for (int i = 0; i < nodeAnim.getNumPosKeys(); i++) {
+			System.out.println(i + ": " + nodeAnim.getPosKeyTime(i) + " ticks, "
+					+ nodeAnim.getPosKeyVector(i, Jassimp.BUILTIN));
+		}
+	}
 }

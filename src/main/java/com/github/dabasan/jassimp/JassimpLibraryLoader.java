@@ -41,25 +41,23 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.github.dabasan.jassimp;
 
 /**
- * Library loader for the jassimp library.<p>
+ * Library loader for the jassimp library.
+ * <p>
  * 
- * The default implementation uses "System.loadLibrary" to
- * load the jassimp native library. <p>
+ * The default implementation uses "System.loadLibrary" to load the jassimp
+ * native library.
+ * <p>
  * 
- * Custom implementations should override the loadLibrary()
- * function. 
+ * Custom implementations should override the loadLibrary() function.
  *
  */
-public class JassimpLibraryLoader
-{  
-   /**
-    * Function to load the native jassimp library.
-    * 
-    * Called the first time Jassimp.importFile() is 
-    * called. 
-    */
-   public void loadLibrary()
-   {
-      System.loadLibrary("jassimp");
-   }
+public class JassimpLibraryLoader {
+	/**
+	 * Function to load the native jassimp library.
+	 * 
+	 * Called the first time Jassimp.importFile() is called.
+	 */
+	public void loadLibrary() {
+		System.loadLibrary("jassimp");
+	}
 }

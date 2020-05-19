@@ -42,72 +42,71 @@ package com.github.dabasan.jassimp;
 
 import java.util.Set;
 
-
 /**
- * Enumerates the types of geometric primitives supported by Assimp.<p>
+ * Enumerates the types of geometric primitives supported by Assimp.
+ * <p>
  */
 public enum AiPrimitiveType {
-    /**
-     * A point primitive.
-     */
-    POINT(0x1),
-    
-    
-    /**
-     * A line primitive.
-     */
-    LINE(0x2),
-    
-    
-    /**
-     * A triangular primitive.
-     */
-    TRIANGLE(0x4),
-    
-    
-    /**
-     * A higher-level polygon with more than 3 edges.<p>
-     * 
-     * A triangle is a polygon, but polygon in this context means
-     * "all polygons that are not triangles". The "Triangulate"-Step is provided
-     * for your convenience, it splits all polygons in triangles (which are much
-     * easier to handle).
-     */
-    POLYGON(0x8);
+	/**
+	 * A point primitive.
+	 */
+	POINT(0x1),
 
-    
-    /**
-     * Utility method for converting from c/c++ based integer enums to java 
-     * enums.<p>
-     * 
-     * This method is intended to be used from JNI and my change based on
-     * implementation needs.
-     * 
-     * @param set the target set to fill
-     * @param rawValue an integer based enum value (as defined by assimp) 
-     */
-    static void fromRawValue(Set<AiPrimitiveType> set, int rawValue) {
-        
-        for (AiPrimitiveType type : AiPrimitiveType.values()) {
-            if ((type.m_rawValue & rawValue) != 0) {
-                set.add(type);
-            }
-        }
-    }
-    
-    
-    /**
-     * Constructor.
-     * 
-     * @param rawValue maps java enum to c/c++ integer enum values
-     */
-    private AiPrimitiveType(int rawValue) {
-        m_rawValue = rawValue;
-    }
-    
-    
-    /**
-     * The mapped c/c++ integer enum value.
-     */
-    private final int m_rawValue;
+	/**
+	 * A line primitive.
+	 */
+	LINE(0x2),
+
+	/**
+	 * A triangular primitive.
+	 */
+	TRIANGLE(0x4),
+
+	/**
+	 * A higher-level polygon with more than 3 edges.
+	 * <p>
+	 * 
+	 * A triangle is a polygon, but polygon in this context means "all polygons
+	 * that are not triangles". The "Triangulate"-Step is provided for your
+	 * convenience, it splits all polygons in triangles (which are much easier
+	 * to handle).
+	 */
+	POLYGON(0x8);
+
+	/**
+	 * Utility method for converting from c/c++ based integer enums to java
+	 * enums.
+	 * <p>
+	 * 
+	 * This method is intended to be used from JNI and my change based on
+	 * implementation needs.
+	 * 
+	 * @param set
+	 *            the target set to fill
+	 * @param rawValue
+	 *            an integer based enum value (as defined by assimp)
+	 */
+	static void fromRawValue(Set<AiPrimitiveType> set, int rawValue) {
+
+		for (final AiPrimitiveType type : AiPrimitiveType.values()) {
+			if ((type.m_rawValue & rawValue) != 0) {
+				set.add(type);
+			}
+		}
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param rawValue
+	 *            maps java enum to c/c++ integer enum values
+	 */
+	private AiPrimitiveType(int rawValue) {
+		m_rawValue = rawValue;
+	}
+
+	/**
+	 * The mapped c/c++ integer enum value.
+	 */
+	private final int m_rawValue;
 }

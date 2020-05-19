@@ -43,94 +43,92 @@ package com.github.dabasan.jassimp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * A single bone of a mesh.<p>
+ * A single bone of a mesh.
+ * <p>
  *
  * A bone has a name by which it can be found in the frame hierarchy and by
- * which it can be addressed by animations. In addition it has a number of 
- * influences on vertices.<p>
+ * which it can be addressed by animations. In addition it has a number of
+ * influences on vertices.
+ * <p>
  * 
  * This class is designed to be mutable, i.e., the returned collections are
  * writable and may be modified.
  */
 public final class AiBone {
-    /**
-     * Name of the bone.
-     */
-    private String m_name;
-    
-    
-    /**
-     * Bone weights.
-     */
-    private final List<AiBoneWeight> m_boneWeights = 
-            new ArrayList<AiBoneWeight>();
-    
-    
-    /**
-     * Offset matrix.
-     */
-    private Object m_offsetMatrix; 
+	/**
+	 * Name of the bone.
+	 */
+	private String m_name;
 
-    /**
-     * Constructor.
-     */
-    AiBone() {
-        /* nothing to do */
-    }
-    
-    
-    /**
-     * Returns the name of the bone.
-     * 
-     * @return the name
-     */
-    public String getName() {
-        return m_name;
-    }
-    
-    
-    /**
-     * Returns the number of bone weights.<p>
-     * 
-     * This method exists for compatibility with the native assimp API.
-     * The returned value is identical to <code>getBoneWeights().size()</code>
-     * 
-     * @return the number of weights
-     */
-    public int getNumWeights() {
-        return m_boneWeights.size();
-    }
-    
-    
-    /**
-     * Returns a list of bone weights.
-     * 
-     * @return the bone weights
-     */
-    public List<AiBoneWeight> getBoneWeights() {
-        return m_boneWeights;
-    }
-    
-    
-    /**
-     * Returns the offset matrix.<p>
-     * 
-     * The offset matrix is a 4x4 matrix that transforms from mesh space to 
-     * bone space in bind pose.<p>
-     * 
-     * This method is part of the wrapped API (see {@link AiWrapperProvider}
-     * for details on wrappers).
-     * 
-     * @param wrapperProvider the wrapper provider (used for type inference)
-     * 
-     * @return the offset matrix
-     */
-    @SuppressWarnings("unchecked")
-    public <V3, M4, C, N, Q> M4 getOffsetMatrix(
-            AiWrapperProvider<V3, M4, C, N, Q>  wrapperProvider) {
-        
-        return (M4) m_offsetMatrix;
-    }    
+	/**
+	 * Bone weights.
+	 */
+	private final List<AiBoneWeight> m_boneWeights = new ArrayList<>();
+
+	/**
+	 * Offset matrix.
+	 */
+	private Object m_offsetMatrix;
+
+	/**
+	 * Constructor.
+	 */
+	AiBone() {
+		/* nothing to do */
+	}
+
+	/**
+	 * Returns the name of the bone.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return m_name;
+	}
+
+	/**
+	 * Returns the number of bone weights.
+	 * <p>
+	 * 
+	 * This method exists for compatibility with the native assimp API. The
+	 * returned value is identical to <code>getBoneWeights().size()</code>
+	 * 
+	 * @return the number of weights
+	 */
+	public int getNumWeights() {
+		return m_boneWeights.size();
+	}
+
+	/**
+	 * Returns a list of bone weights.
+	 * 
+	 * @return the bone weights
+	 */
+	public List<AiBoneWeight> getBoneWeights() {
+		return m_boneWeights;
+	}
+
+	/**
+	 * Returns the offset matrix.
+	 * <p>
+	 * 
+	 * The offset matrix is a 4x4 matrix that transforms from mesh space to bone
+	 * space in bind pose.
+	 * <p>
+	 * 
+	 * This method is part of the wrapped API (see {@link AiWrapperProvider} for
+	 * details on wrappers).
+	 * 
+	 * @param wrapperProvider
+	 *            the wrapper provider (used for type inference)
+	 * 
+	 * @return the offset matrix
+	 */
+	@SuppressWarnings("unchecked")
+	public <V3, M4, C, N, Q> M4 getOffsetMatrix(
+			AiWrapperProvider<V3, M4, C, N, Q> wrapperProvider) {
+
+		return (M4) m_offsetMatrix;
+	}
 }

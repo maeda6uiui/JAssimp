@@ -42,12 +42,13 @@ package com.github.dabasan.jassimp;
 
 import java.nio.ByteBuffer;
 
-
 /**
- * Interface to allow custom resource loaders for jassimp.<p>
+ * Interface to allow custom resource loaders for jassimp.
+ * <p>
  *
- * The design is based on passing the file wholly in memory, 
- * because Java inputstreams do not have to support seek. <p>
+ * The design is based on passing the file wholly in memory, because Java
+ * inputstreams do not have to support seek.
+ * <p>
  * 
  * Writing files from Java is unsupported.
  * 
@@ -55,26 +56,28 @@ import java.nio.ByteBuffer;
  * @author Jesper Smith
  *
  */
-public interface AiIOStream
-{
+public interface AiIOStream {
 
-   /**
-    * Read all data into buffer. <p>
-    * 
-    * The whole stream should be read into the buffer. 
-    * No support is provided for partial reads. 
-    * 
-    * @param buffer Target buffer for the model data
-    * 
-    * @return true if successful, false if an error occurred.
-    */
-   boolean read(ByteBuffer buffer);
+	/**
+	 * Read all data into buffer.
+	 * <p>
+	 * 
+	 * The whole stream should be read into the buffer. No support is provided
+	 * for partial reads.
+	 * 
+	 * @param buffer
+	 *            Target buffer for the model data
+	 * 
+	 * @return true if successful, false if an error occurred.
+	 */
+	boolean read(ByteBuffer buffer);
 
-   /**
-    * The total size of this stream. <p>
-    *  
-    * @return total size of this stream
-    */
-   int getFileSize();
+	/**
+	 * The total size of this stream.
+	 * <p>
+	 * 
+	 * @return total size of this stream
+	 */
+	int getFileSize();
 
 }

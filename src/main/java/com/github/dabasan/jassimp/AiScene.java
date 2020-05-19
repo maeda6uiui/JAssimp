@@ -43,209 +43,201 @@ package com.github.dabasan.jassimp;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * The root structure of the imported data.<p>
+ * The root structure of the imported data.
+ * <p>
  * 
  * Everything that was imported from the given file can be accessed from here.
  * <p>
- * Jassimp copies all data into "java memory" during import and frees 
- * resources allocated by native code after scene loading is completed. No
- * special care has to be taken for freeing resources, unreferenced jassimp 
- * objects (including the scene itself) are eligible to garbage collection like
- * any other java object.  
+ * Jassimp copies all data into "java memory" during import and frees resources
+ * allocated by native code after scene loading is completed. No special care
+ * has to be taken for freeing resources, unreferenced jassimp objects
+ * (including the scene itself) are eligible to garbage collection like any
+ * other java object.
  */
 public final class AiScene {
-    /**
-     * Constructor.
-     */
-    AiScene() {
-        /* nothing to do */
-    }
-    
-    
-    /**
-     * Returns the number of meshes contained in the scene.<p>
-     * 
-     * This method is provided for completeness reasons. It will return the 
-     * same value as <code>getMeshes().size()</code>
-     * 
-     * @return the number of meshes
-     */
-    public int getNumMeshes() {
-        return m_meshes.size();
-    }
-    
+	/**
+	 * Constructor.
+	 */
+	AiScene() {
+		/* nothing to do */
+	}
 
-    /**
-     * Returns the meshes contained in the scene.<p>
-     * 
-     * If there are no meshes in the scene, an empty collection is returned
-     * 
-     * @return the list of meshes
-     */
-    public List<AiMesh> getMeshes() {
-        return m_meshes;
-    }
-    
-    
-    /** 
-     * Returns the number of materials in the scene.<p>
-     * 
-     * This method is provided for completeness reasons. It will return the 
-     * same value as <code>getMaterials().size()</code>
-     * 
-     * @return the number of materials
-     */
-    public int getNumMaterials() {
-        return m_materials.size();
-    }
+	/**
+	 * Returns the number of meshes contained in the scene.
+	 * <p>
+	 * 
+	 * This method is provided for completeness reasons. It will return the same
+	 * value as <code>getMeshes().size()</code>
+	 * 
+	 * @return the number of meshes
+	 */
+	public int getNumMeshes() {
+		return m_meshes.size();
+	}
 
-    
-    /** 
-     * Returns the list of materials.<p>
-     * 
-     * Use the index given in each aiMesh structure to access this
-     * array. If the {@link AiSceneFlag#INCOMPLETE} flag is not set there will
-     * always be at least ONE material.
-     * 
-     * @return the list of materials
-     */
-    public List<AiMaterial> getMaterials() {
-        return m_materials;
-    }
-    
-    
-    /** 
-     * Returns the number of animations in the scene.<p>
-     * 
-     * This method is provided for completeness reasons. It will return the 
-     * same value as <code>getAnimations().size()</code>
-     * 
-     * @return the number of materials
-     */
-    public int getNumAnimations() {
-        return m_animations.size();
-    }
+	/**
+	 * Returns the meshes contained in the scene.
+	 * <p>
+	 * 
+	 * If there are no meshes in the scene, an empty collection is returned
+	 * 
+	 * @return the list of meshes
+	 */
+	public List<AiMesh> getMeshes() {
+		return m_meshes;
+	}
 
-    
-    /** 
-     * Returns the list of animations.
-     * 
-     * @return the list of animations
-     */
-    public List<AiAnimation> getAnimations() {
-        return m_animations;
-    }
+	/**
+	 * Returns the number of materials in the scene.
+	 * <p>
+	 * 
+	 * This method is provided for completeness reasons. It will return the same
+	 * value as <code>getMaterials().size()</code>
+	 * 
+	 * @return the number of materials
+	 */
+	public int getNumMaterials() {
+		return m_materials.size();
+	}
 
+	/**
+	 * Returns the list of materials.
+	 * <p>
+	 * 
+	 * Use the index given in each aiMesh structure to access this array. If the
+	 * {@link AiSceneFlag#INCOMPLETE} flag is not set there will always be at
+	 * least ONE material.
+	 * 
+	 * @return the list of materials
+	 */
+	public List<AiMaterial> getMaterials() {
+		return m_materials;
+	}
 
-    /** 
-     * Returns the number of light sources in the scene.<p>
-     * 
-     * This method is provided for completeness reasons. It will return the 
-     * same value as <code>getLights().size()</code>
-     * 
-     * @return the number of lights
-     */
-    public int getNumLights() {
-        return m_lights.size();
-    }
-     
+	/**
+	 * Returns the number of animations in the scene.
+	 * <p>
+	 * 
+	 * This method is provided for completeness reasons. It will return the same
+	 * value as <code>getAnimations().size()</code>
+	 * 
+	 * @return the number of materials
+	 */
+	public int getNumAnimations() {
+		return m_animations.size();
+	}
 
-    /** 
-     * Returns the list of light sources.<p>
-     * 
-     * Light sources are fully optional, the returned list may be empty
-     * 
-     * @return a possibly empty list of lights
-     */
-    public List<AiLight> getLights() {
-        return m_lights; 
-    }
-    
-    
-    /**
-     * Returns the number of cameras in the scene.<p>
-     * 
-     * This method is provided for completeness reasons. It will return the
-     * same value as <code>getCameras().size()</code>
-     * 
-     * @return the number of cameras
-     */
-    public int getNumCameras() {
-        return m_cameras.size();
-    }
-    
-    
-    /**
-     * Returns the list of cameras.<p>
-     * 
-     * Cameras are fully optional, the returned list may be empty
-     * 
-     * @return a possibly empty list of cameras
-     */
-    public List<AiCamera> getCameras() {
-        return m_cameras;
-    }
+	/**
+	 * Returns the list of animations.
+	 * 
+	 * @return the list of animations
+	 */
+	public List<AiAnimation> getAnimations() {
+		return m_animations;
+	}
 
-    
-    /**
-     * Returns the scene graph root.
-     * 
-     * This method is part of the wrapped API (see {@link AiWrapperProvider}
-     * for details on wrappers).<p>
-     * 
-     * The built-in behavior is to return a {@link AiVector}.
-     * 
-     * @param wrapperProvider the wrapper provider (used for type inference)
-     * @return the scene graph root
-     */
-    @SuppressWarnings("unchecked")
-    public <V3, M4, C, N, Q> N getSceneRoot(AiWrapperProvider<V3, M4, C, N, Q> 
-            wrapperProvider) {
+	/**
+	 * Returns the number of light sources in the scene.
+	 * <p>
+	 * 
+	 * This method is provided for completeness reasons. It will return the same
+	 * value as <code>getLights().size()</code>
+	 * 
+	 * @return the number of lights
+	 */
+	public int getNumLights() {
+		return m_lights.size();
+	}
 
-        return (N) m_sceneRoot;
-    } 
+	/**
+	 * Returns the list of light sources.
+	 * <p>
+	 * 
+	 * Light sources are fully optional, the returned list may be empty
+	 * 
+	 * @return a possibly empty list of lights
+	 */
+	public List<AiLight> getLights() {
+		return m_lights;
+	}
 
+	/**
+	 * Returns the number of cameras in the scene.
+	 * <p>
+	 * 
+	 * This method is provided for completeness reasons. It will return the same
+	 * value as <code>getCameras().size()</code>
+	 * 
+	 * @return the number of cameras
+	 */
+	public int getNumCameras() {
+		return m_cameras.size();
+	}
 
-    @Override
-    public String toString() {
-        return "AiScene (" + m_meshes.size() + " mesh/es)";
-    }
+	/**
+	 * Returns the list of cameras.
+	 * <p>
+	 * 
+	 * Cameras are fully optional, the returned list may be empty
+	 * 
+	 * @return a possibly empty list of cameras
+	 */
+	public List<AiCamera> getCameras() {
+		return m_cameras;
+	}
 
+	/**
+	 * Returns the scene graph root.
+	 * 
+	 * This method is part of the wrapped API (see {@link AiWrapperProvider} for
+	 * details on wrappers).
+	 * <p>
+	 * 
+	 * The built-in behavior is to return a {@link AiVector}.
+	 * 
+	 * @param wrapperProvider
+	 *            the wrapper provider (used for type inference)
+	 * @return the scene graph root
+	 */
+	@SuppressWarnings("unchecked")
+	public <V3, M4, C, N, Q> N getSceneRoot(AiWrapperProvider<V3, M4, C, N, Q> wrapperProvider) {
 
-    /**
-     * Meshes.
-     */
-    private final List<AiMesh> m_meshes = new ArrayList<AiMesh>();
-    
-    
-    /**
-     * Materials.
-     */
-    private final List<AiMaterial> m_materials = new ArrayList<AiMaterial>();
-    
-    
-    /**
-     * Animations.
-     */
-    private final List<AiAnimation> m_animations = new ArrayList<AiAnimation>();
-    
-    
-    /**
-     * Lights.
-     */
-    private final List<AiLight> m_lights = new ArrayList<AiLight>();
-    
-    
-    /**
-     * Cameras.
-     */
-    private final List<AiCamera> m_cameras = new ArrayList<AiCamera>();
-    
-    
-    /**
-     * Scene graph root.
-     */
-    private Object m_sceneRoot;
+		return (N) m_sceneRoot;
+	}
+
+	@Override
+	public String toString() {
+		return "AiScene (" + m_meshes.size() + " mesh/es)";
+	}
+
+	/**
+	 * Meshes.
+	 */
+	private final List<AiMesh> m_meshes = new ArrayList<>();
+
+	/**
+	 * Materials.
+	 */
+	private final List<AiMaterial> m_materials = new ArrayList<>();
+
+	/**
+	 * Animations.
+	 */
+	private final List<AiAnimation> m_animations = new ArrayList<>();
+
+	/**
+	 * Lights.
+	 */
+	private final List<AiLight> m_lights = new ArrayList<>();
+
+	/**
+	 * Cameras.
+	 */
+	private final List<AiCamera> m_cameras = new ArrayList<>();
+
+	/**
+	 * Scene graph root.
+	 */
+	private Object m_sceneRoot;
 }

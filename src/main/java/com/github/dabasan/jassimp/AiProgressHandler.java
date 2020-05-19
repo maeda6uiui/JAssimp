@@ -40,7 +40,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-public interface AiProgressHandler
-{
-    boolean update(float percentage);
+public interface AiProgressHandler {
+	boolean update(float percentage);
 }

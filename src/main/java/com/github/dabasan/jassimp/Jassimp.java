@@ -342,7 +342,7 @@ public final class Jassimp {
 	 * @return the wrapped color
 	 */
 	static Object wrapColor4(float red, float green, float blue, float alpha) {
-		ByteBuffer temp = ByteBuffer.allocate(4 * 4);
+		final ByteBuffer temp = ByteBuffer.allocate(4 * 4);
 		temp.putFloat(red);
 		temp.putFloat(green);
 		temp.putFloat(blue);
@@ -366,7 +366,7 @@ public final class Jassimp {
 	 * @return the wrapped vector
 	 */
 	static Object wrapVec3(float x, float y, float z) {
-		ByteBuffer temp = ByteBuffer.allocate(3 * 4);
+		final ByteBuffer temp = ByteBuffer.allocate(3 * 4);
 		temp.putFloat(x);
 		temp.putFloat(y);
 		temp.putFloat(z);

@@ -39,80 +39,68 @@ THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ---------------------------------------------------------------------------
 */
-public class AiMetadataEntry
-{
-   public enum AiMetadataType
-   {
-      AI_BOOL, AI_INT32, AI_UINT64, AI_FLOAT, AI_DOUBLE, AI_AISTRING, AI_AIVECTOR3D
-   }
+public class AiMetadataEntry {
+	public enum AiMetadataType {
+		AI_BOOL, AI_INT32, AI_UINT64, AI_FLOAT, AI_DOUBLE, AI_AISTRING, AI_AIVECTOR3D
+	}
 
-   private AiMetadataType mType;
-   private Object mData;
+	private AiMetadataType mType;
+	private Object mData;
 
-   public AiMetadataType getMetaDataType()
-   {
-      return mType;
-   }
+	public AiMetadataType getMetaDataType() {
+		return mType;
+	}
 
-   public Object getData()
-   {
-      return mData;
-   }
+	public Object getData() {
+		return mData;
+	}
 
-   public static boolean getAiBoolAsBoolean(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_BOOL);
+	public static boolean getAiBoolAsBoolean(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_BOOL);
 
-      return (boolean) metadataEntry.mData;
-   }
+		return (boolean) metadataEntry.mData;
+	}
 
-   public static int getAiInt32AsInteger(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_INT32);
+	public static int getAiInt32AsInteger(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_INT32);
 
-      return (int) metadataEntry.mData;
-   }
+		return (int) metadataEntry.mData;
+	}
 
-   public static long getAiUint64AsLong(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_UINT64);
+	public static long getAiUint64AsLong(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_UINT64);
 
-      return (long) metadataEntry.mData;
-   }
+		return (long) metadataEntry.mData;
+	}
 
-   public static float getAiFloatAsFloat(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_FLOAT);
+	public static float getAiFloatAsFloat(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_FLOAT);
 
-      return (float) metadataEntry.mData;
-   }
+		return (float) metadataEntry.mData;
+	}
 
-   public static double getAiDoubleAsDouble(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_DOUBLE);
+	public static double getAiDoubleAsDouble(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_DOUBLE);
 
-      return (double) metadataEntry.mData;
-   }
+		return (double) metadataEntry.mData;
+	}
 
-   public static String getAiStringAsString(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_AISTRING);
+	public static String getAiStringAsString(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_AISTRING);
 
-      return (String) metadataEntry.mData;
-   }
+		return (String) metadataEntry.mData;
+	}
 
-   public static AiVector getAiAiVector3DAsAiVector(AiMetadataEntry metadataEntry)
-   {
-      checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_AIVECTOR3D);
+	public static AiVector getAiAiVector3DAsAiVector(AiMetadataEntry metadataEntry) {
+		checkTypeBeforeCasting(metadataEntry, AiMetadataType.AI_AIVECTOR3D);
 
-      return (AiVector) metadataEntry.mData;
-   }
+		return (AiVector) metadataEntry.mData;
+	}
 
-   private static void checkTypeBeforeCasting(AiMetadataEntry entry, AiMetadataType expectedType)
-   {
-      if(entry.mType != expectedType)
-      {
-         throw new RuntimeException("Cannot cast entry of type " + entry.mType.name() + " to " + expectedType.name());
-      }
-   }
+	private static void checkTypeBeforeCasting(AiMetadataEntry entry, AiMetadataType expectedType) {
+		if (entry.mType != expectedType) {
+			throw new RuntimeException("Cannot cast entry of type " + entry.mType.name() + " to "
+					+ expectedType.name());
+		}
+	}
 }

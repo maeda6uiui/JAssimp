@@ -40,185 +40,175 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
  * Data structure for texture related material properties.
  */
 public final class AiTextureInfo {
-    
-    /**
-     * Constructor.
-     * 
-     * @param type type
-     * @param index index
-     * @param file file
-     * @param uvIndex uv index
-     * @param blend blend factor
-     * @param texOp texture operation
-     * @param mmU map mode for u axis
-     * @param mmV map mode for v axis
-     * @param mmW map mode for w axis
-     */
-    AiTextureInfo(AiTextureType type, int index, String file,
-            int uvIndex, float blend, AiTextureOp texOp, AiTextureMapMode mmU,
-            AiTextureMapMode mmV, AiTextureMapMode mmW) {
-        
-        m_type = type;
-        m_index = index;
-        m_file = file;
-        m_uvIndex = uvIndex;
-        m_blend = blend;
-        m_textureOp = texOp;
-        m_textureMapModeU = mmU;
-        m_textureMapModeV = mmV;
-        m_textureMapModeW = mmW;
-    }
-    
 
-    /**
-     * Specifies the type of the texture (e.g. diffuse, specular, ...).
-     * 
-     * @return the type.
-     */
-    public AiTextureType getType() {
-        return m_type;
-    }
-    
-    
-    /**
-     * Index of the texture in the texture stack.<p>
-     * 
-     * Each type maintains a stack of textures, i.e., there may be a diffuse.0,
-     * a diffuse.1, etc
-     * 
-     * @return the index
-     */
-    public int getIndex() {
-        return m_index;
-    }
-    
-    
-    /**
-     * Returns the path to the texture file.
-     * 
-     * @return the path
-     */
-    public String getFile() {
-        return m_file;
-    }
-    
-    
-    /**
-     * Returns the index of the UV coordinate set.
-     * 
-     * @return the uv index
-     */
-    public int getUVIndex() {
-        return m_uvIndex;
-    }
-    
-    
-    /**
-     * Returns the blend factor.
-     * 
-     * @return the blend factor
-     */
-    public float getBlend() {
-        return m_blend;
-    }
-    
-    
-    /**
-     * Returns the texture operation used to combine this texture and the
-     * preceding texture in the stack.
-     * 
-     * @return the texture operation
-     */
-    public AiTextureOp getTextureOp() {
-        return m_textureOp;
-    }
-    
-    
-    /**
-     * Returns the texture map mode for U texture axis.
-     * 
-     * @return the texture map mode
-     */
-    public AiTextureMapMode getTextureMapModeU() {
-        return m_textureMapModeU;
-    }
-    
-    
-    /**
-     * Returns the texture map mode for V texture axis.
-     * 
-     * @return the texture map mode
-     */
-    public AiTextureMapMode getTextureMapModeV() {
-        return m_textureMapModeV;
-    }
-    
-    
-    /**
-     * Returns the texture map mode for W texture axis.
-     * 
-     * @return the texture map mode
-     */
-    public AiTextureMapMode getTextureMapModeW() {
-        return m_textureMapModeW;
-    }
-    
-    
-    /**
-     * Type.
-     */
-    private final AiTextureType m_type;
-    
-    
-    /**
-     * Index.
-     */
-    private final int m_index;
-    
-    
-    /**
-     * Path.
-     */
-    private final String m_file;
-    
-    
-    /**
-     * UV index.
-     */
-    private final int m_uvIndex;
-    
-    
-    /**
-     * Blend factor.
-     */
-    private final float m_blend;
-    
-    
-    /**
-     * Texture operation.
-     */
-    private final AiTextureOp m_textureOp;
-    
-    
-    /**
-     * Map mode U axis.
-     */
-    private final AiTextureMapMode m_textureMapModeU;
-    
-    
-    /**
-     * Map mode V axis.
-     */
-    private final AiTextureMapMode m_textureMapModeV;
-    
-    
-    /**
-     * Map mode W axis.
-     */
-    private final AiTextureMapMode m_textureMapModeW;
+	/**
+	 * Constructor.
+	 * 
+	 * @param type
+	 *            type
+	 * @param index
+	 *            index
+	 * @param file
+	 *            file
+	 * @param uvIndex
+	 *            uv index
+	 * @param blend
+	 *            blend factor
+	 * @param texOp
+	 *            texture operation
+	 * @param mmU
+	 *            map mode for u axis
+	 * @param mmV
+	 *            map mode for v axis
+	 * @param mmW
+	 *            map mode for w axis
+	 */
+	AiTextureInfo(AiTextureType type, int index, String file, int uvIndex, float blend,
+			AiTextureOp texOp, AiTextureMapMode mmU, AiTextureMapMode mmV, AiTextureMapMode mmW) {
+
+		m_type = type;
+		m_index = index;
+		m_file = file;
+		m_uvIndex = uvIndex;
+		m_blend = blend;
+		m_textureOp = texOp;
+		m_textureMapModeU = mmU;
+		m_textureMapModeV = mmV;
+		m_textureMapModeW = mmW;
+	}
+
+	/**
+	 * Specifies the type of the texture (e.g. diffuse, specular, ...).
+	 * 
+	 * @return the type.
+	 */
+	public AiTextureType getType() {
+		return m_type;
+	}
+
+	/**
+	 * Index of the texture in the texture stack.
+	 * <p>
+	 * 
+	 * Each type maintains a stack of textures, i.e., there may be a diffuse.0,
+	 * a diffuse.1, etc
+	 * 
+	 * @return the index
+	 */
+	public int getIndex() {
+		return m_index;
+	}
+
+	/**
+	 * Returns the path to the texture file.
+	 * 
+	 * @return the path
+	 */
+	public String getFile() {
+		return m_file;
+	}
+
+	/**
+	 * Returns the index of the UV coordinate set.
+	 * 
+	 * @return the uv index
+	 */
+	public int getUVIndex() {
+		return m_uvIndex;
+	}
+
+	/**
+	 * Returns the blend factor.
+	 * 
+	 * @return the blend factor
+	 */
+	public float getBlend() {
+		return m_blend;
+	}
+
+	/**
+	 * Returns the texture operation used to combine this texture and the
+	 * preceding texture in the stack.
+	 * 
+	 * @return the texture operation
+	 */
+	public AiTextureOp getTextureOp() {
+		return m_textureOp;
+	}
+
+	/**
+	 * Returns the texture map mode for U texture axis.
+	 * 
+	 * @return the texture map mode
+	 */
+	public AiTextureMapMode getTextureMapModeU() {
+		return m_textureMapModeU;
+	}
+
+	/**
+	 * Returns the texture map mode for V texture axis.
+	 * 
+	 * @return the texture map mode
+	 */
+	public AiTextureMapMode getTextureMapModeV() {
+		return m_textureMapModeV;
+	}
+
+	/**
+	 * Returns the texture map mode for W texture axis.
+	 * 
+	 * @return the texture map mode
+	 */
+	public AiTextureMapMode getTextureMapModeW() {
+		return m_textureMapModeW;
+	}
+
+	/**
+	 * Type.
+	 */
+	private final AiTextureType m_type;
+
+	/**
+	 * Index.
+	 */
+	private final int m_index;
+
+	/**
+	 * Path.
+	 */
+	private final String m_file;
+
+	/**
+	 * UV index.
+	 */
+	private final int m_uvIndex;
+
+	/**
+	 * Blend factor.
+	 */
+	private final float m_blend;
+
+	/**
+	 * Texture operation.
+	 */
+	private final AiTextureOp m_textureOp;
+
+	/**
+	 * Map mode U axis.
+	 */
+	private final AiTextureMapMode m_textureMapModeU;
+
+	/**
+	 * Map mode V axis.
+	 */
+	private final AiTextureMapMode m_textureMapModeV;
+
+	/**
+	 * Map mode W axis.
+	 */
+	private final AiTextureMapMode m_textureMapModeW;
 }

@@ -40,39 +40,39 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
- * Defines how the mapping coords for a texture are generated.<p>
+ * Defines how the mapping coords for a texture are generated.
+ * <p>
  *
  * Real-time applications typically require full UV coordinates, so the use of
- * the {@link AiPostProcessSteps#GEN_UV_COORDS} step is highly recommended. 
- * It generates proper UV channels for non-UV mapped objects, as long as an 
- * accurate description how the mapping should look like (e.g spherical) is 
+ * the {@link AiPostProcessSteps#GEN_UV_COORDS} step is highly recommended. It
+ * generates proper UV channels for non-UV mapped objects, as long as an
+ * accurate description how the mapping should look like (e.g spherical) is
  * given.
  */
 public enum AiTextureMapping {
-       /** 
-        * The mapping coordinates are taken from an UV channel.
-        *
-        *  The #AI_MATKEY_UVWSRC key specifies from which UV channel
-        *  the texture coordinates are to be taken from (remember,
-        *  meshes can have more than one UV channel). 
-       */
-//       aiTextureMapping_UV = 0x0,
-//
-//        /** Spherical mapping */
-//       aiTextureMapping_SPHERE = 0x1,
-//
-//        /** Cylindrical mapping */
-//       aiTextureMapping_CYLINDER = 0x2,
-//
-//        /** Cubic mapping */
-//       aiTextureMapping_BOX = 0x3,
-//
-//        /** Planar mapping */
-//       aiTextureMapping_PLANE = 0x4,
-//
-//        /** Undefined mapping. Have fun. */
-//       aiTextureMapping_OTHER = 0x5,
+	/**
+	 * The mapping coordinates are taken from an UV channel.
+	 *
+	 * The #AI_MATKEY_UVWSRC key specifies from which UV channel the texture
+	 * coordinates are to be taken from (remember, meshes can have more than one
+	 * UV channel).
+	 */
+	// aiTextureMapping_UV = 0x0,
+	//
+	// /** Spherical mapping */
+	// aiTextureMapping_SPHERE = 0x1,
+	//
+	// /** Cylindrical mapping */
+	// aiTextureMapping_CYLINDER = 0x2,
+	//
+	// /** Cubic mapping */
+	// aiTextureMapping_BOX = 0x3,
+	//
+	// /** Planar mapping */
+	// aiTextureMapping_PLANE = 0x4,
+	//
+	// /** Undefined mapping. Have fun. */
+	// aiTextureMapping_OTHER = 0x5,
 
 }

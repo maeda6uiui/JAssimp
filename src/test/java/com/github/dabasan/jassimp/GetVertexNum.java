@@ -8,13 +8,13 @@ public class GetVertexNum {
 		AiScene scene;
 		try {
 			scene = Jassimp.importFile("./TestData/model.obj");
-		} catch (IOException e) {
+		} catch (final IOException e) {
 			e.printStackTrace();
 			return;
 		}
 
-		List<AiMesh> meshes = scene.getMeshes();
-		for (AiMesh mesh : meshes) {
+		final List<AiMesh> meshes = scene.getMeshes();
+		for (final AiMesh mesh : meshes) {
 			System.out.println(mesh.getNumVertices());
 		}
 	}

@@ -40,73 +40,69 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
-/** 
+/**
  * Defines how an animation channel behaves outside the defined time range.
  */
 public enum AiAnimBehavior {
-    /** 
-     * The value from the default node transformation is taken.
-     */
-    DEFAULT(0x0),  
+	/**
+	 * The value from the default node transformation is taken.
+	 */
+	DEFAULT(0x0),
 
-    
-    /** 
-     * The nearest key value is used without interpolation. 
-     */
-    CONSTANT(0x1),
+	/**
+	 * The nearest key value is used without interpolation.
+	 */
+	CONSTANT(0x1),
 
-    
-    /** 
-     * The value of the nearest two keys is linearly extrapolated for the 
-     * current time value.
-     */
-    LINEAR(0x2),
+	/**
+	 * The value of the nearest two keys is linearly extrapolated for the
+	 * current time value.
+	 */
+	LINEAR(0x2),
 
-    
-    /** 
-     * The animation is repeated.<p>
-     *
-     * If the animation key go from n to m and the current time is t, use the 
-     * value at (t-n) % (|m-n|).
-     */
-    REPEAT(0x3);
-    
-    
-    /**
-     * Utility method for converting from c/c++ based integer enums to java 
-     * enums.<p>
-     * 
-     * This method is intended to be used from JNI and my change based on
-     * implementation needs.
-     * 
-     * @param rawValue an integer based enum value (as defined by assimp) 
-     * @return the enum value corresponding to rawValue
-     */
-    static AiAnimBehavior fromRawValue(int rawValue) {
-        for (AiAnimBehavior type : AiAnimBehavior.values()) {
-            if (type.m_rawValue == rawValue) {
-                return type;
-            }
-        }
+	/**
+	 * The animation is repeated.
+	 * <p>
+	 *
+	 * If the animation key go from n to m and the current time is t, use the
+	 * value at (t-n) % (|m-n|).
+	 */
+	REPEAT(0x3);
 
-        throw new IllegalArgumentException("unexptected raw value: " + 
-                rawValue);
-    }
+	/**
+	 * Utility method for converting from c/c++ based integer enums to java
+	 * enums.
+	 * <p>
+	 * 
+	 * This method is intended to be used from JNI and my change based on
+	 * implementation needs.
+	 * 
+	 * @param rawValue
+	 *            an integer based enum value (as defined by assimp)
+	 * @return the enum value corresponding to rawValue
+	 */
+	static AiAnimBehavior fromRawValue(int rawValue) {
+		for (final AiAnimBehavior type : AiAnimBehavior.values()) {
+			if (type.m_rawValue == rawValue) {
+				return type;
+			}
+		}
 
+		throw new IllegalArgumentException("unexptected raw value: " + rawValue);
+	}
 
-    /**
-     * Constructor.
-     * 
-     * @param rawValue maps java enum to c/c++ integer enum values
-     */
-    private AiAnimBehavior(int rawValue) {
-        m_rawValue = rawValue;
-    }
+	/**
+	 * Constructor.
+	 * 
+	 * @param rawValue
+	 *            maps java enum to c/c++ integer enum values
+	 */
+	private AiAnimBehavior(int rawValue) {
+		m_rawValue = rawValue;
+	}
 
-
-    /**
-     * The mapped c/c++ integer enum value.
-     */
-    private final int m_rawValue;
+	/**
+	 * The mapped c/c++ integer enum value.
+	 */
+	private final int m_rawValue;
 }

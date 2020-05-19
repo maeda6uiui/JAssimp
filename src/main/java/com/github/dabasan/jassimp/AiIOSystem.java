@@ -40,40 +40,43 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-public interface AiIOSystem <T extends AiIOStream>
-{
-   /**
-    * 
-    * Open a new file with a given path.
-    * When the access to the file is finished, call close() to release all associated resources
-    * 
-    * @param path Path to the file
-    * @param ioMode file I/O mode. Required are: "wb", "w", "wt", "rb", "r", "rt".
-    * 
-    * @return AiIOStream or null if an error occurred
-    */
-   public T open(String path, String ioMode);
-   
-   
-   /**
-    * Tests for the existence of a file at the given path.
-    *  
-    * @param path path to the file
-    * @return true if there is a file with this path, else false.
-    */
-   public boolean exists(String path);
+public interface AiIOSystem<T extends AiIOStream> {
+	/**
+	 * 
+	 * Open a new file with a given path. When the access to the file is
+	 * finished, call close() to release all associated resources
+	 * 
+	 * @param path
+	 *            Path to the file
+	 * @param ioMode
+	 *            file I/O mode. Required are: "wb", "w", "wt", "rb", "r", "rt".
+	 * 
+	 * @return AiIOStream or null if an error occurred
+	 */
+	public T open(String path, String ioMode);
 
-   /**
-    * Returns the system specific directory separator.<p>
-    * 
-    * @return System specific directory separator
-    */
-   public char getOsSeparator();
-   
-   /**
-    * Closes the given file and releases all resources associated with it.
-    * 
-    * @param file The file instance previously created by Open().
-    */
-   public void close(T file);
+	/**
+	 * Tests for the existence of a file at the given path.
+	 * 
+	 * @param path
+	 *            path to the file
+	 * @return true if there is a file with this path, else false.
+	 */
+	public boolean exists(String path);
+
+	/**
+	 * Returns the system specific directory separator.
+	 * <p>
+	 * 
+	 * @return System specific directory separator
+	 */
+	public char getOsSeparator();
+
+	/**
+	 * Closes the given file and releases all resources associated with it.
+	 * 
+	 * @param file
+	 *            The file instance previously created by Open().
+	 */
+	public void close(T file);
 }

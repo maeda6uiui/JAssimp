@@ -40,49 +40,45 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
  * A single influence of a bone on a vertex.
  */
 public final class AiBoneWeight {
-    /**
-     * Constructor.
-     */
-    AiBoneWeight() {
-        /* nothing to do */
-    }
-    
-    
-    /**
-     * Index of the vertex which is influenced by the bone.
-     * 
-     * @return the vertex index
-     */
-    public int getVertexId() {
-        return m_vertexId;
-    }
-    
-    
-    /**
-     * The strength of the influence in the range (0...1).<p>
-     * 
-     * The influence from all bones at one vertex amounts to 1
-     * 
-     * @return the influence
-     */
-    public float getWeight() {
-        return m_weight;
-    }
-    
-    
-    /**
-     * Vertex index.
-     */
-    private int m_vertexId;
-    
-    
-    /**
-     * Influence of bone on vertex.
-     */
-    private float m_weight;
+	/**
+	 * Constructor.
+	 */
+	AiBoneWeight() {
+		/* nothing to do */
+	}
+
+	/**
+	 * Index of the vertex which is influenced by the bone.
+	 * 
+	 * @return the vertex index
+	 */
+	public int getVertexId() {
+		return m_vertexId;
+	}
+
+	/**
+	 * The strength of the influence in the range (0...1).
+	 * <p>
+	 * 
+	 * The influence from all bones at one vertex amounts to 1
+	 * 
+	 * @return the influence
+	 */
+	public float getWeight() {
+		return m_weight;
+	}
+
+	/**
+	 * Vertex index.
+	 */
+	private int m_vertexId;
+
+	/**
+	 * Influence of bone on vertex.
+	 */
+	private float m_weight;
 }

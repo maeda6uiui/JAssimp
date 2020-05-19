@@ -40,84 +40,83 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
  * List of light types supported by {@link AiLight}.
  */
 public enum AiLightType {
-    /**
-     * A directional light source.<p>
-     * 
-     * A directional light has a well-defined direction but is infinitely far 
-     * away. That's quite a good approximation for sun light.
-     */
-    DIRECTIONAL(0x1),
+	/**
+	 * A directional light source.
+	 * <p>
+	 * 
+	 * A directional light has a well-defined direction but is infinitely far
+	 * away. That's quite a good approximation for sun light.
+	 */
+	DIRECTIONAL(0x1),
 
-    
-    /**
-     * A point light source.<p>
-     * 
-     * A point light has a well-defined position in space but no direction - 
-     * it emits light in all directions. A normal bulb is a point light.
-     */
-    POINT(0x2),
+	/**
+	 * A point light source.
+	 * <p>
+	 * 
+	 * A point light has a well-defined position in space but no direction - it
+	 * emits light in all directions. A normal bulb is a point light.
+	 */
+	POINT(0x2),
 
-    
-    /**
-     * A spot light source.<p>
-     * 
-     * A spot light emits light in a specific angle. It has a position and a 
-     * direction it is pointing to. A good example for a spot light is a light
-     * spot in sport arenas.
-     */
-    SPOT(0x3),
+	/**
+	 * A spot light source.
+	 * <p>
+	 * 
+	 * A spot light emits light in a specific angle. It has a position and a
+	 * direction it is pointing to. A good example for a spot light is a light
+	 * spot in sport arenas.
+	 */
+	SPOT(0x3),
 
+	/**
+	 * The generic light level of the world, including the bounces of all other
+	 * lightsources.
+	 * <p>
+	 *
+	 * Typically, there's at most one ambient light in a scene. This light type
+	 * doesn't have a valid position, direction, or other properties, just a
+	 * color.
+	 */
+	AMBIENT(0x4);
 
-    /**
-     *  The generic light level of the world, including the bounces of all other
-     *  lightsources. <p>
-     *
-     *  Typically, there's at most one ambient light in a scene.
-     *  This light type doesn't have a valid position, direction, or
-     *  other properties, just a color.
-     */
-    AMBIENT(0x4);
+	/**
+	 * Utility method for converting from c/c++ based integer enums to java
+	 * enums.
+	 * <p>
+	 * 
+	 * This method is intended to be used from JNI and my change based on
+	 * implementation needs.
+	 * 
+	 * @param rawValue
+	 *            an integer based enum value (as defined by assimp)
+	 * @return the enum value corresponding to rawValue
+	 */
+	static AiLightType fromRawValue(int rawValue) {
+		for (final AiLightType type : AiLightType.values()) {
+			if (type.m_rawValue == rawValue) {
+				return type;
+			}
+		}
 
+		throw new IllegalArgumentException("unexptected raw value: " + rawValue);
+	}
 
-    /**
-     * Utility method for converting from c/c++ based integer enums to java 
-     * enums.<p>
-     * 
-     * This method is intended to be used from JNI and my change based on
-     * implementation needs.
-     * 
-     * @param rawValue an integer based enum value (as defined by assimp) 
-     * @return the enum value corresponding to rawValue
-     */
-    static AiLightType fromRawValue(int rawValue) {
-        for (AiLightType type : AiLightType.values()) {
-            if (type.m_rawValue == rawValue) {
-                return type;
-            }
-        }
-        
-        throw new IllegalArgumentException("unexptected raw value: " + 
-                rawValue);
-    }
-    
-    
-    /**
-     * Constructor.
-     * 
-     * @param rawValue maps java enum to c/c++ integer enum values
-     */
-    private AiLightType(int rawValue) {
-        m_rawValue = rawValue;
-    }
-    
-    
-    /**
-     * The mapped c/c++ integer enum value.
-     */
-    private final int m_rawValue;
+	/**
+	 * Constructor.
+	 * 
+	 * @param rawValue
+	 *            maps java enum to c/c++ integer enum values
+	 */
+	private AiLightType(int rawValue) {
+		m_rawValue = rawValue;
+	}
+
+	/**
+	 * The mapped c/c++ integer enum value.
+	 */
+	private final int m_rawValue;
 }

@@ -42,154 +42,150 @@ package com.github.dabasan.jassimp;
 
 import java.nio.ByteBuffer;
 
-
 /**
- * Wrapper for 3-dimensional vectors.<p>
+ * Wrapper for 3-dimensional vectors.
+ * <p>
  * 
- * This wrapper is also used to represent 1- and 2-dimensional vectors. In 
- * these cases only the x (or the x and y coordinate) will be used.
- * Accessing unused components will throw UnsupportedOperationExceptions.<p>
+ * This wrapper is also used to represent 1- and 2-dimensional vectors. In these
+ * cases only the x (or the x and y coordinate) will be used. Accessing unused
+ * components will throw UnsupportedOperationExceptions.
+ * <p>
  * 
  * The wrapper is writable, i.e., changes performed via the set-methods will
  * modify the underlying mesh.
  */
 public final class AiVector {
-    /**
-     * Constructor.
-     * 
-     * @param buffer the buffer to wrap
-     * @param offset offset into buffer
-     * @param numComponents number vector of components
-     */
-    public AiVector(ByteBuffer buffer, int offset, int numComponents) {
-        if (null == buffer) {
-            throw new IllegalArgumentException("buffer may not be null");
-        }
-        
-        m_buffer = buffer;
-        m_offset = offset;
-        m_numComponents = numComponents;
-    }
-    
-    
-    /**
-     * Returns the x value.
-     * 
-     * @return the x value
-     */
-    public float getX() {
-        return m_buffer.getFloat(m_offset);
-    }
-    
-    
-    /**
-     * Returns the y value.<p>
-     * 
-     * May only be called on 2- or 3-dimensional vectors.
-     * 
-     * @return the y value
-     */
-    public float getY() {
-        if (m_numComponents <= 1) {
-            throw new UnsupportedOperationException(
-                    "vector has only 1 component");
-        }
-        
-        return m_buffer.getFloat(m_offset + 4);
-    }
-    
-    
-    /**
-     * Returns the z value.<p>
-     * 
-     * May only be called on 3-dimensional vectors.
-     * 
-     * @return the z value
-     */
-    public float getZ() {
-        if (m_numComponents <= 2) {
-            throw new UnsupportedOperationException(
-                    "vector has only 2 components");
-        }
-        
-        return m_buffer.getFloat(m_offset + 8);
-    }
-    
-    
-    /**
-     * Sets the x component.
-     * 
-     * @param x the new value
-     */
-    public void setX(float x) {
-        m_buffer.putFloat(m_offset, x);
-    }
-    
-    
-    /**
-     * Sets the y component.<p>
-     * 
-     * May only be called on 2- or 3-dimensional vectors.
-     * 
-     * @param y the new value
-     */
-    public void setY(float y) {
-        if (m_numComponents <= 1) {
-            throw new UnsupportedOperationException(
-                    "vector has only 1 component");
-        }
-        
-        m_buffer.putFloat(m_offset + 4, y);
-    }
-    
-    
-    /**
-     * Sets the z component.<p>
-     * 
-     * May only be called on 3-dimensional vectors.
-     * 
-     * @param z the new value
-     */
-    public void setZ(float z) {
-        if (m_numComponents <= 2) {
-            throw new UnsupportedOperationException(
-                    "vector has only 2 components");
-        }
-        
-        m_buffer.putFloat(m_offset + 8, z);
-    }
-    
-    
-    /**
-     * Returns the number of components in this vector.
-     * 
-     * @return the number of components
-     */
-    public int getNumComponents() {
-        return m_numComponents;
-    }
-    
-    
-    @Override
-    public String toString() {
-        return "[" + getX() + ", " + getY() + ", " + getZ() + "]";
-    }
-    
-    
-    /**
-     * Wrapped buffer.
-     */
-    private final ByteBuffer m_buffer;
-    
-    
-    /**
-     * Offset into m_buffer.
-     */
-    private final int m_offset;
-    
-    
-    /**
-     * Number of components. 
-     */
-    private final int m_numComponents;
+	/**
+	 * Constructor.
+	 * 
+	 * @param buffer
+	 *            the buffer to wrap
+	 * @param offset
+	 *            offset into buffer
+	 * @param numComponents
+	 *            number vector of components
+	 */
+	public AiVector(ByteBuffer buffer, int offset, int numComponents) {
+		if (null == buffer) {
+			throw new IllegalArgumentException("buffer may not be null");
+		}
+
+		m_buffer = buffer;
+		m_offset = offset;
+		m_numComponents = numComponents;
+	}
+
+	/**
+	 * Returns the x value.
+	 * 
+	 * @return the x value
+	 */
+	public float getX() {
+		return m_buffer.getFloat(m_offset);
+	}
+
+	/**
+	 * Returns the y value.
+	 * <p>
+	 * 
+	 * May only be called on 2- or 3-dimensional vectors.
+	 * 
+	 * @return the y value
+	 */
+	public float getY() {
+		if (m_numComponents <= 1) {
+			throw new UnsupportedOperationException("vector has only 1 component");
+		}
+
+		return m_buffer.getFloat(m_offset + 4);
+	}
+
+	/**
+	 * Returns the z value.
+	 * <p>
+	 * 
+	 * May only be called on 3-dimensional vectors.
+	 * 
+	 * @return the z value
+	 */
+	public float getZ() {
+		if (m_numComponents <= 2) {
+			throw new UnsupportedOperationException("vector has only 2 components");
+		}
+
+		return m_buffer.getFloat(m_offset + 8);
+	}
+
+	/**
+	 * Sets the x component.
+	 * 
+	 * @param x
+	 *            the new value
+	 */
+	public void setX(float x) {
+		m_buffer.putFloat(m_offset, x);
+	}
+
+	/**
+	 * Sets the y component.
+	 * <p>
+	 * 
+	 * May only be called on 2- or 3-dimensional vectors.
+	 * 
+	 * @param y
+	 *            the new value
+	 */
+	public void setY(float y) {
+		if (m_numComponents <= 1) {
+			throw new UnsupportedOperationException("vector has only 1 component");
+		}
+
+		m_buffer.putFloat(m_offset + 4, y);
+	}
+
+	/**
+	 * Sets the z component.
+	 * <p>
+	 * 
+	 * May only be called on 3-dimensional vectors.
+	 * 
+	 * @param z
+	 *            the new value
+	 */
+	public void setZ(float z) {
+		if (m_numComponents <= 2) {
+			throw new UnsupportedOperationException("vector has only 2 components");
+		}
+
+		m_buffer.putFloat(m_offset + 8, z);
+	}
+
+	/**
+	 * Returns the number of components in this vector.
+	 * 
+	 * @return the number of components
+	 */
+	public int getNumComponents() {
+		return m_numComponents;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + getX() + ", " + getY() + ", " + getZ() + "]";
+	}
+
+	/**
+	 * Wrapped buffer.
+	 */
+	private final ByteBuffer m_buffer;
+
+	/**
+	 * Offset into m_buffer.
+	 */
+	private final int m_offset;
+
+	/**
+	 * Number of components.
+	 */
+	private final int m_numComponents;
 }

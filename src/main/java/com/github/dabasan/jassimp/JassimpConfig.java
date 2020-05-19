@@ -40,27 +40,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
 /**
  * Global configuration values (limits).
  */
 public final class JassimpConfig {
-    /**
-     * Maximum number of vertex color sets.
-     */
-    public static final int MAX_NUMBER_COLORSETS = 8;
-    
-    
-    /**
-     * Maximum number of texture coordinate sets.
-     */
-    public static final int MAX_NUMBER_TEXCOORDS = 8;
-    
-    
-    /**
-     * Pure static class, no accessible constructor.
-     */
-    private JassimpConfig() {
-        /* nothing to do */
-    }
+	/**
+	 * Maximum number of vertex color sets.
+	 */
+	public static final int MAX_NUMBER_COLORSETS = 8;
+
+	/**
+	 * Maximum number of texture coordinate sets.
+	 */
+	public static final int MAX_NUMBER_TEXCOORDS = 8;
+
+	/**
+	 * Pure static class, no accessible constructor.
+	 */
+	private JassimpConfig() {
+		/* nothing to do */
+	}
 }

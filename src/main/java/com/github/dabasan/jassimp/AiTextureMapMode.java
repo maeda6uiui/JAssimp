@@ -40,74 +40,70 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 package com.github.dabasan.jassimp;
 
-
-/** 
- * Defines how UV coordinates outside the [0...1] range are handled.<p>
+/**
+ * Defines how UV coordinates outside the [0...1] range are handled.
+ * <p>
  *
  * Commonly referred to as 'wrapping mode'.
  */
 public enum AiTextureMapMode {
-    /** 
-     * A texture coordinate u|v is translated to u%1|v%1. 
-     */
-    WRAP(0x0),
+	/**
+	 * A texture coordinate u|v is translated to u%1|v%1.
+	 */
+	WRAP(0x0),
 
-    
-    /** 
-     * Texture coordinates outside [0...1] are clamped to the nearest 
-     * valid value.
-     */
-    CLAMP(0x1),
+	/**
+	 * Texture coordinates outside [0...1] are clamped to the nearest valid
+	 * value.
+	 */
+	CLAMP(0x1),
 
+	/**
+	 * A texture coordinate u|v becomes u%1|v%1 if (u-(u%1))%2 is zero and
+	 * 1-(u%1)|1-(v%1) otherwise.
+	 */
+	MIRROR(0x2),
 
-    /** 
-     * A texture coordinate u|v becomes u%1|v%1 if (u-(u%1))%2 is zero and
-     * 1-(u%1)|1-(v%1) otherwise.
-     */
-    MIRROR(0x2),
-    
-    
-    /** 
-     * If the texture coordinates for a pixel are outside [0...1] the texture 
-     * is not applied to that pixel.
-     */
-    DECAL(0x3);
+	/**
+	 * If the texture coordinates for a pixel are outside [0...1] the texture is
+	 * not applied to that pixel.
+	 */
+	DECAL(0x3);
 
-    
-    /**
-     * Utility method for converting from c/c++ based integer enums to java 
-     * enums.<p>
-     * 
-     * This method is intended to be used from JNI and my change based on
-     * implementation needs.
-     * 
-     * @param rawValue an integer based enum value (as defined by assimp) 
-     * @return the enum value corresponding to rawValue
-     */
-    static AiTextureMapMode fromRawValue(int rawValue) {
-        for (AiTextureMapMode type : AiTextureMapMode.values()) {
-            if (type.m_rawValue == rawValue) {
-                return type;
-            }
-        }
-        
-        throw new IllegalArgumentException("unexptected raw value: " + 
-                rawValue);
-    }
-    
-    
-    /**
-     * Constructor.
-     * 
-     * @param rawValue maps java enum to c/c++ integer enum values
-     */
-    private AiTextureMapMode(int rawValue) {
-        m_rawValue = rawValue;
-    }
-    
-    
-    /**
-     * The mapped c/c++ integer enum value.
-     */
-    private final int m_rawValue;
+	/**
+	 * Utility method for converting from c/c++ based integer enums to java
+	 * enums.
+	 * <p>
+	 * 
+	 * This method is intended to be used from JNI and my change based on
+	 * implementation needs.
+	 * 
+	 * @param rawValue
+	 *            an integer based enum value (as defined by assimp)
+	 * @return the enum value corresponding to rawValue
+	 */
+	static AiTextureMapMode fromRawValue(int rawValue) {
+		for (final AiTextureMapMode type : AiTextureMapMode.values()) {
+			if (type.m_rawValue == rawValue) {
+				return type;
+			}
+		}
+
+		throw new IllegalArgumentException("unexptected raw value: " + rawValue);
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param rawValue
+	 *            maps java enum to c/c++ integer enum values
+	 */
+	private AiTextureMapMode(int rawValue) {
+		m_rawValue = rawValue;
+	}
+
+	/**
+	 * The mapped c/c++ integer enum value.
+	 */
+	private final int m_rawValue;
 }

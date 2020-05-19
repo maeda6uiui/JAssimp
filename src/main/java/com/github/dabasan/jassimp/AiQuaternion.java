@@ -42,124 +42,119 @@ package com.github.dabasan.jassimp;
 
 import java.nio.ByteBuffer;
 
-
 /**
- * Wrapper for a quaternion.<p>
+ * Wrapper for a quaternion.
+ * <p>
  * 
  * The wrapper is writable, i.e., changes performed via the set-methods will
  * modify the underlying mesh/animation.
  */
 public final class AiQuaternion {
-    /**
-     * Wrapped buffer.
-     */
-    private final ByteBuffer m_buffer;
-    
-    
-    /**
-     * Offset into m_buffer.
-     */
-    private final int m_offset;
+	/**
+	 * Wrapped buffer.
+	 */
+	private final ByteBuffer m_buffer;
 
-    /**
-     * Constructor.
-     * 
-     * @param buffer the buffer to wrap
-     * @param offset offset into buffer
-     */
-    public AiQuaternion(ByteBuffer buffer, int offset) {
-        if (null == buffer) {
-            throw new IllegalArgumentException("buffer may not be null");
-        }
-        
-        m_buffer = buffer;
-        m_offset = offset;
-    }
-    
-    
-    /**
-     * Returns the x value.
-     * 
-     * @return the x value
-     */
-    public float getX() {
-        return m_buffer.getFloat(m_offset + 4);
-    }
-    
-    
-    /**
-     * Returns the y value.
-     * 
-     * @return the y value
-     */
-    public float getY() {
-        return m_buffer.getFloat(m_offset + 8);
-    }
-    
-    
-    /**
-     * Returns the z value.
-     * 
-     * @return the z value
-     */
-    public float getZ() {
-        return m_buffer.getFloat(m_offset + 12);
-    }
-    
-    
-    /**
-     * Returns the w value.
-     * 
-     * @return the w value
-     */
-    public float getW() {
-        return m_buffer.getFloat(m_offset);
-    }
-    
-    
-    /**
-     * Sets the x component.
-     * 
-     * @param x the new value
-     */
-    public void setX(float x) {
-        m_buffer.putFloat(m_offset + 4, x);
-    }
-    
-    
-    /**
-     * Sets the y component.
-     * 
-     * @param y the new value
-     */
-    public void setY(float y) {
-        m_buffer.putFloat(m_offset + 8, y);
-    }
-    
-    
-    /**
-     * Sets the z component.
-     * 
-     * @param z the new value
-     */
-    public void setZ(float z) {
-        m_buffer.putFloat(m_offset + 12, z);
-    }
-    
-    
-    /**
-     * Sets the z component.
-     * 
-     * @param w the new value
-     */
-    public void setW(float w) {
-        m_buffer.putFloat(m_offset, w);
-    }
-    
-    
-    @Override
-    public String toString() {
-        return "[" + getX() + ", " + getY() + ", " + getZ() + ", " + 
-                getW() + "]";
-    }    
+	/**
+	 * Offset into m_buffer.
+	 */
+	private final int m_offset;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param buffer
+	 *            the buffer to wrap
+	 * @param offset
+	 *            offset into buffer
+	 */
+	public AiQuaternion(ByteBuffer buffer, int offset) {
+		if (null == buffer) {
+			throw new IllegalArgumentException("buffer may not be null");
+		}
+
+		m_buffer = buffer;
+		m_offset = offset;
+	}
+
+	/**
+	 * Returns the x value.
+	 * 
+	 * @return the x value
+	 */
+	public float getX() {
+		return m_buffer.getFloat(m_offset + 4);
+	}
+
+	/**
+	 * Returns the y value.
+	 * 
+	 * @return the y value
+	 */
+	public float getY() {
+		return m_buffer.getFloat(m_offset + 8);
+	}
+
+	/**
+	 * Returns the z value.
+	 * 
+	 * @return the z value
+	 */
+	public float getZ() {
+		return m_buffer.getFloat(m_offset + 12);
+	}
+
+	/**
+	 * Returns the w value.
+	 * 
+	 * @return the w value
+	 */
+	public float getW() {
+		return m_buffer.getFloat(m_offset);
+	}
+
+	/**
+	 * Sets the x component.
+	 * 
+	 * @param x
+	 *            the new value
+	 */
+	public void setX(float x) {
+		m_buffer.putFloat(m_offset + 4, x);
+	}
+
+	/**
+	 * Sets the y component.
+	 * 
+	 * @param y
+	 *            the new value
+	 */
+	public void setY(float y) {
+		m_buffer.putFloat(m_offset + 8, y);
+	}
+
+	/**
+	 * Sets the z component.
+	 * 
+	 * @param z
+	 *            the new value
+	 */
+	public void setZ(float z) {
+		m_buffer.putFloat(m_offset + 12, z);
+	}
+
+	/**
+	 * Sets the z component.
+	 * 
+	 * @param w
+	 *            the new value
+	 */
+	public void setW(float w) {
+		m_buffer.putFloat(m_offset, w);
+	}
+
+	@Override
+	public String toString() {
+		return "[" + getX() + ", " + getY() + ", " + getZ() + ", " + getW() + "]";
+	}
 }

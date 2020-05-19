@@ -2006,19 +2006,19 @@ JNIEXPORT jstring JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetLegalStri
 	return env->NewStringUTF(str);
 }
 JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMinor
-(JNIEnv* env, jclass jClazz)
+(JNIEnv *env, jclass jClazz)
 {
 	const int res = aiGetVersionMinor();
 	return res;
 }
 JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMajor
-(JNIEnv* env, jclass jClazz)
+(JNIEnv *env, jclass jClazz)
 {
 	const int res = aiGetVersionMajor();
 	return res;
 }
 JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionRevision
-(JNIEnv* env, jclass jClazz)
+(JNIEnv *env, jclass jClazz)
 {
 	const int res = aiGetVersionRevision();
 	return res;

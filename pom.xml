@@ -18,6 +18,21 @@
 		</license>
 	</licenses>
 
+	<developers>
+		<developer>
+			<name>Developers of Assimp</name>
+			<organization>Assimp</organization>
+			<organizationUrl>https://www.assimp.org/</organizationUrl>
+		</developer>
+		<developer>
+			<name>Developers of jassimp</name>
+			<url>https://github.com/assimp/assimp/tree/master/port/jassimp</url>
+		</developer>
+		<developer>
+			<name>Hirotsugu Daba</name>
+		</developer>
+	</developers>
+
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>

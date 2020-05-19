@@ -22,21 +22,21 @@ public class GetVertices {
 		}
 
 		final List<AiMesh> meshes = scene.getMeshes();
-		for (var mesh : meshes) {
-			IntBuffer index_buffer = mesh.getIndexBuffer();
-			FloatBuffer pos_buffer = mesh.getPositionBuffer();
+		for (final var mesh : meshes) {
+			final IntBuffer index_buffer = mesh.getIndexBuffer();
+			final FloatBuffer pos_buffer = mesh.getPositionBuffer();
 
-			int vertex_num = index_buffer.capacity();
-			int triangle_num = vertex_num / 3;
+			final int vertex_num = index_buffer.capacity();
+			final int triangle_num = vertex_num / 3;
 
 			for (int i = 0; i < triangle_num; i++) {
 				System.out.printf("[Face %d]\n", i);
 
 				for (int j = 0; j < 3; j++) {
-					int index = index_buffer.get();
-					float x = pos_buffer.get(3 * index);
-					float y = pos_buffer.get(3 * index + 1);
-					float z = pos_buffer.get(3 * index + 2);
+					final int index = index_buffer.get();
+					final float x = pos_buffer.get(3 * index);
+					final float y = pos_buffer.get(3 * index + 1);
+					final float z = pos_buffer.get(3 * index + 2);
 
 					System.out.printf("v%d: (%f, %f, %f)\n", j, x, y, z);
 				}

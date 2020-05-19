@@ -14,7 +14,7 @@ public class GetVertexNum {
 		}
 
 		final List<AiMesh> meshes = scene.getMeshes();
-		for (var mesh : meshes) {
+		for (final var mesh : meshes) {
 			System.out.println(mesh.getNumVertices());
 		}
 	}

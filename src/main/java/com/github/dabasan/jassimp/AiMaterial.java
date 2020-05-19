@@ -80,8 +80,7 @@ public final class AiMaterial {
 	/**
 	 * Number of textures for each type.
 	 */
-	private final Map<AiTextureType, Integer> m_numTextures = new EnumMap<>(
-			AiTextureType.class);
+	private final Map<AiTextureType, Integer> m_numTextures = new EnumMap<>(AiTextureType.class);
 
 	/**
 	 * Enumerates all supported material properties.
@@ -1143,8 +1142,7 @@ public final class AiMaterial {
 	/**
 	 * Defaults for missing properties.
 	 */
-	private final Map<PropertyKey, Object> m_defaults = new EnumMap<>(
-			PropertyKey.class);
+	private final Map<PropertyKey, Object> m_defaults = new EnumMap<>(PropertyKey.class);
 
 	{
 		setDefault(PropertyKey.NAME, "");

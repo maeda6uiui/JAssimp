@@ -13,8 +13,8 @@ public class GetMaterials {
 			return;
 		}
 
-		List<AiMaterial> materials = scene.getMaterials();
-		for (var material : materials) {
+		final List<AiMaterial> materials = scene.getMaterials();
+		for (final var material : materials) {
 			System.out.println(material.getName());
 			System.out.println(material.getTextureFile(AiTextureType.DIFFUSE, 0));
 			System.out.println("====================");

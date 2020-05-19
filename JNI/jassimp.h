@@ -41,6 +41,11 @@ JNIEXPORT jstring JNICALL Java_com_github_dabasan_jassimp_Jassimp_getErrorString
 JNIEXPORT jobject JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiImportFile
   (JNIEnv *, jclass, jstring, jlong, jobject, jobject);
 
+JNIEXPORT jstring JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetLegalString(JNIEnv*, jclass);
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMinor(JNIEnv*, jclass);
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMajor(JNIEnv*, jclass);
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionRevision(JNIEnv*, jclass);
+
 #ifdef __cplusplus
 }
 #endif

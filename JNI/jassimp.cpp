@@ -5,7 +5,7 @@
 #include <assimp/scene.h>
 #include <assimp/IOStream.hpp>
 #include <assimp/IOSystem.hpp>
-
+#include <assimp/version.h>
 
 #ifdef JNI_LOG
 #ifdef ANDROID
@@ -1908,7 +1908,6 @@ JNIEXPORT jobject JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiImportFile
 	
     Assimp::Importer imp;
 
-	
 	if(ioSystem != NULL)
 	{
 		imp.SetIOHandler(new JavaIOSystem(env, ioSystem));		
@@ -1992,4 +1991,35 @@ end:
 	lprintf("return from native\n");
 
 	return jScene;
+}
+
+JNIEXPORT jstring JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetLegalString
+(JNIEnv *env, jclass jClazz)
+{
+	const char* str = aiGetLegalString();
+
+	if (NULL == str)
+	{
+		return env->NewStringUTF("");
+	}
+
+	return env->NewStringUTF(str);
+}
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMinor
+(JNIEnv* env, jclass jClazz)
+{
+	const int res = aiGetVersionMinor();
+	return res;
+}
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionMajor
+(JNIEnv* env, jclass jClazz)
+{
+	const int res = aiGetVersionMajor();
+	return res;
+}
+JNIEXPORT jint JNICALL Java_com_github_dabasan_jassimp_Jassimp_aiGetVersionRevision
+(JNIEnv* env, jclass jClazz)
+{
+	const int res = aiGetVersionRevision();
+	return res;
 }

@@ -24,10 +24,8 @@ Java SE 11+
 
 Native libraries must be in java.library.path.
 
-#### Download native libraries
+### Download native libraries
 
 - [Windows binary](https://github.com/Dabasan/JAssimp/releases/download/v1.0.0/windows_bin.zip)
 - [Linux binary](https://github.com/Dabasan/JAssimp/releases/download/v1.0.0/linux_bin.tar.gz)
-
-
 

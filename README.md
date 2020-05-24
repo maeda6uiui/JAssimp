@@ -2,7 +2,7 @@
 
 Java binding for [Assimp](https://github.com/assimp/assimp)
 
-This project is derived from [jassimp](https://github.com/assimp/assimp/tree/master/port/jassimp).
+See also: [jassimp](https://github.com/assimp/assimp/tree/master/port/jassimp)
 
 # Overview
 
